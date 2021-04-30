@@ -1,0 +1,305 @@
+<style>
+
+</style>
+
+
+<meta charset="utf-8">
+
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<script type="text/javascript" src="sweetalert.js"></script>
+<header id="main-header">
+
+	<section>
+		<section class="fila">
+			<div class="containerform">
+				<div class="columna">
+					<div class="inputs">
+						<div class="input-group">
+							<input id="txtSearch" type="text" class="form-control" data-i18n="[title]CRMLite.txtSearch;[placeholder]CRMLite.txtSearch" placeholder="Search by phone, id or email" aria-describedby="basic-addon1" data-toggle="tooltip" title="" data-original-title="Name">
+							<span class="input-group-addon btnsearch" id="btnSearch">
+                    <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+							</span>
+						</div>
+
+					</div>
+					<div class="table-container">
+						<table class="table" id="tblSearch">
+							<thead>
+								<tr>
+									<th scope="row">#</th>
+									<th>id</th>
+									<th>name</th>
+									<th>phone</th>
+								</tr>
+							</thead>
+							<tbody id="tblBody">
+
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</section>
+		<section class="crmlite-container fila">
+
+			<div class="columna containerform">
+				<div class="row">
+					<div class="flex-title">
+						<spam data-i18n="CRMLite.ContactInfo"> Contact information </spam>
+						<div class="badge-help badge-help-primary">
+							<spam>
+								<a style="color: white" data-i18n="CRMLite.howToUse" href="https://www.notion.so/How-to-use-CRMLite-0b3741ef947e46d2a7e6b575647161a7" target="_blank" "="">
+								How to use
+								</a>
+							</spam>
+						</div>
+						<div class="cleanbtn">
+							<button id="btnClean" type="button" class="btn btn-danger btn-clean"> 
+					 <i class="fa fa-trash"></i>
+				 </button>
+						</div>
+
+						<div class="cleanbtn">
+							<button id="btnContactSave" type="button" class="btn btn-success btn-altsave"> 
+					  <i class="fa fa-save"></i>
+				 </button>
+						</div>
+					</div>
+
+					<form id="reactform" class="form-contact">
+						<div class="col-md-4">
+							<div class="inputs">
+								<div class="input-group">
+									<span class="input-group-addon" id="basic-addon1">
+								<i class="fa fa-id-card"></i>
+							</span>
+									<input data-i18n="[placeholder]CRMLite.txtDocument" id="txtDocument" type="text" class="form-control" name="document" placeholder="Document" aria-describedby="basic-addon1" data-toggle="tooltip" title="" data-original-title="Document">
+								</div>
+							</div>
+							<div class="inputs">
+								<div class="input-group">
+									<span class="input-group-addon" id="basic-addon1">
+					
+                    <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+									</span>
+									<input data-i18n="[placeholder]CRMLite.txtName" id="txtName" type="text" class="form-control" name="name" placeholder="Name" aria-describedby="basic-addon1" data-toggle="tooltip" title="" data-original-title="Name">
+								</div>
+							</div>
+							<div class="inputs">
+								<div class="input-group">
+									<span class="input-group-addon" id="phoneAddon"><i class="fa fa-phone"></i>
+						</span>
+									<input data-i18n="[placeholder]CRMLite.txtPhone" id="txtPhone" type="text" class="form-control" name="phone" placeholder="Phone" aria-describedby="basic-addon1" data-toggle="tooltip" title="" data-original-title="Phone">
+								</div>
+							</div>
+							<div class="inputs">
+								<div class="input-group">
+									<span class="input-group-addon" id="basic-addon1">
+                    <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
+									</span>
+									<input data-i18n="[placeholder]CRMLite.txtEmail" id="txtEmail" type="text" class="form-control" name="email" placeholder="Email" aria-describedby="basic-addon1" data-toggle="tooltip" title="" data-original-title="Email">
+								</div>
+							</div>
+							<div class="inputs">
+								<div class="input-group">
+									<span class="input-group-addon" id="basic-addon1">
+                    <span class="glyphicon glyphicon-home" aria-hidden="true"></span>
+									</span>
+									<input data-i18n="[placeholder]CRMLite.txtAddress" id="txtAddress" type="text" class="form-control" name="address" placeholder="Address" aria-describedby="basic-addon1" data-toggle="tooltip" title="" data-original-title="Address">
+								</div>
+							</div>
+						</div>
+
+						<div class="col-md-4 col-tres">
+							<div class="inputs">
+								<div class="input-group">
+									<span class="input-group-addon" id="basic-addon1">
+                    <span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span>
+									</span>
+									<input data-i18n="[placeholder]CRMLite.txtColony" id="txtColony" type="text" class="form-control" name="colony" placeholder="Colony" aria-describedby="basic-addon1" data-toggle="tooltip" title="" data-original-title="Colony">
+								</div>
+							</div>
+							<div class="inputs">
+								<div class="input-group">
+									<span class="input-group-addon" id="basic-addon1">
+                    <span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span>
+									</span>
+									<input data-i18n="[placeholder]CRMLite.txtCp" id="txtCp" type="text" class="form-control" name="cp" placeholder="C.P." aria-describedby="basic-addon1" data-toggle="tooltip" title="" data-original-title="C.P.">
+								</div>
+							</div>
+							<div class="inputs">
+								<div class="input-group">
+									<span class="input-group-addon" id="basic-addon1">
+                    <span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span>
+									</span>
+									<input data-i18n="[placeholder]CRMLite.txtCity" id="txtCity" type="text" class="form-control" name="city" placeholder="City" aria-describedby="basic-addon1" data-toggle="tooltip" title="" data-original-title="City">
+								</div>
+							</div>
+							<div class="inputs">
+								<div class="input-group">
+									<span class="input-group-addon" id="basic-addon1">
+                    <span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span>
+									</span>
+									<input data-i18n="[placeholder]CRMLite.txtState" id="txtState" type="text" class="form-control" name="state" placeholder="State" aria-describedby="basic-addon1" data-toggle="tooltip" title="" data-original-title="State">
+								</div>
+							</div>
+							<div class="inputs">
+								<div class="input-group">
+									<span class="input-group-addon" id="basic-addon1">
+
+					<i class="fa fa-globe"></i>
+							</span>
+									<input data-i18n="[placeholder]CRMLite.txtCountry" id="txtCountry" type="text" class="form-control" name="country" placeholder="Country" aria-describedby="basic-addon1" data-toggle="tooltip" title="" data-original-title="Country">
+								</div>
+							</div>
+
+						</div>
+
+						<div class="col-md-4">
+							<div class="inputs">
+								<div class="input-group">
+									<span class="input-group-addon" id="basic-addon1">
+                    <span class="glyphicon glyphicon-file" aria-hidden="true"></span>
+									</span>
+									<input id="txtField1" type="text" class="form-control" name="field1" placeholder="Field 1" aria-describedby="basic-addon1">
+								</div>
+							</div>
+							<div class="inputs">
+								<div class="input-group">
+									<span class="input-group-addon" id="basic-addon1">
+                    <span class="glyphicon glyphicon-file" aria-hidden="true"></span>
+									</span>
+									<input id="txtField2" type="text" class="form-control" name="field2" placeholder="Field 2" aria-describedby="basic-addon1">
+								</div>
+							</div>
+							<div class="inputs">
+								<div class="input-group">
+									<span class="input-group-addon" id="basic-addon1">
+                    <span class="glyphicon glyphicon-file" aria-hidden="true"></span>
+
+
+									</span>
+									<input id="txtField3" type="text" class="form-control" name="field3" placeholder="Field 3" aria-describedby="basic-addon1">
+								</div>
+							</div>
+							<div class="inputs">
+								<select id="cmbField4" class="combobox-ui">
+						<option data-i18n="CRMLite.SelectOption" disabled="true" selected="true" value="">Select an option</option>
+					</select>
+							</div>
+							<div class="inputs">
+								<select id="cmbField5" class="combobox-ui">
+						<option data-i18n="CRMLite.SelectOption" disabled="true" selected="true" value="">Select an option</option>
+					</select>
+							</div>
+
+						</div>
+					</form>
+					<div class="files-container fila">
+						<div class="closebadge" id="closebadge" style="display:none"></div>
+						<div id="filediv" class="fila">
+
+						</div>
+						<div id="bdgNewfile" class="badge-file badge-file-new">
+
+								<i class="fa fa-plus-circle" style="margin-right: 5px;"></i> 
+							<spam data-i18n="CRMLite.newFile">New File (link)
+							</spam>
+						</div>
+
+					</div>
+				</div>
+
+			</div>
+			<div class="col-md-3 containerform">
+				<div class="dispositions-container" style="width: 100%">
+					<div class="flex-title">
+						<spam data-i18n="CRMLite.disposition"> Disposition </spam>
+					</div>
+					<div class="columna flex-container">
+						<div class="inputs">
+							<select id="cmbCampaign" class="combobox-ui">
+
+						<option data-i18n="CRMLite.SelectCampaign" disabled="true" selected="true" value="">Select a campaign</option>
+					</select>
+						</div>
+						<div class="inputs">
+							<select id="cmbRes1" class="combobox-ui">
+						<option disabled="true" selected="true" value="">Select level 1</option>
+					</select>
+						</div>
+						<div class="inputs">
+							<select id="cmbRes2" class="combobox-ui">
+						<option disabled="true" selected="true" value="">Select level 2</option>
+					</select>
+						</div>
+						<div class="inputs">
+							<select id="cmbRes3" class="combobox-ui">
+						<option disabled="true" selected="true" value="">Select level 3</option>
+					</select>
+						</div>
+						<div class="inputs">
+							<textarea id="txtNote" placeholder="Notes" class="form-control"></textarea>
+						</div>
+						<div class="inputs">
+							<div id="datediv">
+								<input id="dateframe" class="combobox-ui" type="datetime-local" placeholder="Select schedule date!">
+							</div>
+						</div>
+						<div class="flex-container btnbtn">
+							<button id="btnSave" type="button" class="btn btn-success"> 
+					 <i class="fa fa-save"></i>
+				 </button>
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</section>
+		<section id="cntHistory" class="fila history-container">
+			<div class="containerform tblcont">
+				<div class="table-container__history">
+					<table class="table" id="tblHistory">
+						<thead>
+							<tr>
+								<th>Date</th>
+								<th>Agent</th>
+								<th>Campaign</th>
+								<th>Level 1</th>
+								<th>Level 2</th>
+								<th>Level 3</th>
+								<th>Notes</th>
+								<th>Channel</th>
+								<th>Callid</th>
+							</tr>
+						</thead>
+						<tbody id="tblBodyHistory">
+
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</section>
+	</section>
+	<!-- NO BORRAR / DO NOT DELETE -->
+	<div id="scripts"></div>
+	<script type="text/javascript">
+    if (typeof modo === 'undefined') {
+        document.open();
+        document.write(
+            '<script onload="loadConf()"  type="text/javascript" src="../../uContact/assets/js/vendor/jquery/jquery.js"><\/script>'
+        );
+        document.close();
+    } else {
+        formToDay();
+    }
+
+    function loadConf() {
+        $.ajaxSetup({
+            cache: true
+        });
+        $("#scripts").load("config.html");
+    }
+</script></header>

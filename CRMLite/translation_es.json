@@ -1,0 +1,21 @@
+{
+    "CRMLite":{
+        "txtSearch": "Busca por telefono, id o correo",
+        "ContactInfo": "Informacion de contacto",
+        "howToUse": "Manual",
+        "txtDocument": "Documento",
+        "txtName": "Nombre completo",
+        "txtPhone": "Numero de contacto",
+        "txtEmail": "Correo",
+        "txtAddress": "Direccion",
+        "txtColony": "Colonia",
+        "txtCp": "Codigo postal",
+        "txtCity": "Ciudad",
+        "txtState": "Estado",
+        "txtCountry": "Pais",
+        "SelectOption": "Selecciona una opcion",
+        "SelectCampaign": "Selecciona una campaña",
+        "newFile": "Nuevo archivo (url)",
+        "disposition": "Tipificación"
+    }
+}
