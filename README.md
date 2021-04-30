@@ -2,6 +2,8 @@
 
 ---
 
+The new responsive, react and simple CRM for uContact user's :D
+
 [how to use manual](https://www.notion.so/How-to-use-CRMLite-0b3741ef947e46d2a7e6b575647161a7)
 
 ## Figma layout
