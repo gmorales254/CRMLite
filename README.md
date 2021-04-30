@@ -2,6 +2,8 @@
 
 ---
 
+[how to use manual](https://www.notion.so/How-to-use-CRMLite-0b3741ef947e46d2a7e6b575647161a7)
+
 ## Figma layout
 
 [https://www.figma.com/embed?embed_host=notion&url=https%3A%2F%2Fwww.figma.com%2Fproto%2FN8CneHv1McY42cVKhYEfmR%2FuContact-CRMLite%3Fscaling%3Dscale-down%26node-id%3D55%253A0](https://www.figma.com/embed?embed_host=notion&url=https%3A%2F%2Fwww.figma.com%2Fproto%2FN8CneHv1McY42cVKhYEfmR%2FuContact-CRMLite%3Fscaling%3Dscale-down%26node-id%3D55%253A0)
