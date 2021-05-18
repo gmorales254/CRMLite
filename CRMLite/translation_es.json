@@ -16,6 +16,12 @@
         "SelectOption": "Selecciona una opcion",
         "SelectCampaign": "Selecciona una campaña",
         "newFile": "Nuevo archivo (url)",
-        "disposition": "Tipificación"
+        "disposition": "Tipificación",
+        "sureDelete": "¿Estás seguro de querer eliminar este registro?",
+        "warning": "Advertencia",
+        "congrats": "Felicidades",
+        "deleteCustomerOk": "El cliente se a eliminado correctamente",
+        "operationError": "Tenemos un inconveniente, prueba más tarde",
+        "phoneEmpty": "El número de teléfono está vacío"
     }
 }

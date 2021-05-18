@@ -1,8 +1,3 @@
-<style>
-
-</style>
-
-
 <meta charset="utf-8">
 
 <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -17,6 +12,7 @@
 				<div class="columna">
 					<div class="inputs">
 						<div class="input-group">
+								
 							<input id="txtSearch" type="text" class="form-control" data-i18n="[title]CRMLite.txtSearch;[placeholder]CRMLite.txtSearch" placeholder="Search by phone, id or email" aria-describedby="basic-addon1" data-toggle="tooltip" title="" data-original-title="Name">
 							<span class="input-group-addon btnsearch" id="btnSearch">
                     <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
@@ -66,12 +62,26 @@
 					  <i class="fa fa-save"></i>
 				 </button>
 						</div>
-					</div>
 
+						<div class="columna">
+						<div id="trasnferinput" class="inputs">
+								<div class="input-group">
+									<span class="input-group-addon" id="attendTransferAddon"><i class="fa fa-mail-reply-all"></i></span>
+									<input id="txtExten" type="text" class="form-control" name="transfer" placeholder="Type an exten number.." aria-describedby="basic-addon1" data-toggle="tooltip" title="" data-original-title="Transfer">
+								</div>
+							</div>
+						</div>
+
+						
+					</div>
+					
 					<form id="reactform" class="form-contact">
 						<div class="col-md-4">
 							<div class="inputs">
+								<span data-i18n="CRMLite.txtDocument" class="label">Document</span>
+								
 								<div class="input-group">
+								
 									<span class="input-group-addon" id="basic-addon1">
 								<i class="fa fa-id-card"></i>
 							</span>
@@ -79,6 +89,8 @@
 								</div>
 							</div>
 							<div class="inputs">
+								<span data-i18n="CRMLite.txtName" class="label">Name</span>
+								
 								<div class="input-group">
 									<span class="input-group-addon" id="basic-addon1">
 					
@@ -88,6 +100,7 @@
 								</div>
 							</div>
 							<div class="inputs">
+								<span data-i18n="CRMLite.txtPhone" class="label">Phone</span>
 								<div class="input-group">
 									<span class="input-group-addon" id="phoneAddon"><i class="fa fa-phone"></i>
 						</span>
@@ -95,6 +108,7 @@
 								</div>
 							</div>
 							<div class="inputs">
+								<span data-i18n="CRMLite.txtEmail" class="label">Email</span>
 								<div class="input-group">
 									<span class="input-group-addon" id="basic-addon1">
                     <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
@@ -103,6 +117,7 @@
 								</div>
 							</div>
 							<div class="inputs">
+								<span data-i18n="CRMLite.txtAddress" class="label">Address</span>
 								<div class="input-group">
 									<span class="input-group-addon" id="basic-addon1">
                     <span class="glyphicon glyphicon-home" aria-hidden="true"></span>
@@ -114,6 +129,7 @@
 
 						<div class="col-md-4 col-tres">
 							<div class="inputs">
+								<span data-i18n="CRMLite.txtColony" class="label">Colony</span>
 								<div class="input-group">
 									<span class="input-group-addon" id="basic-addon1">
                     <span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span>
@@ -122,6 +138,7 @@
 								</div>
 							</div>
 							<div class="inputs">
+								<span data-i18n="CRMLite.txtCp" class="label">C.P</span>
 								<div class="input-group">
 									<span class="input-group-addon" id="basic-addon1">
                     <span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span>
@@ -130,6 +147,7 @@
 								</div>
 							</div>
 							<div class="inputs">
+								<span data-i18n="CRMLite.txtCity" class="label">City</span>
 								<div class="input-group">
 									<span class="input-group-addon" id="basic-addon1">
                     <span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span>
@@ -138,6 +156,7 @@
 								</div>
 							</div>
 							<div class="inputs">
+								<span data-i18n="CRMLite.txtState" class="label">State</span>
 								<div class="input-group">
 									<span class="input-group-addon" id="basic-addon1">
                     <span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span>
@@ -146,6 +165,7 @@
 								</div>
 							</div>
 							<div class="inputs">
+								<span data-i18n="CRMLite.txtCountry" class="label">Country</span>
 								<div class="input-group">
 									<span class="input-group-addon" id="basic-addon1">
 
@@ -159,6 +179,7 @@
 
 						<div class="col-md-4">
 							<div class="inputs">
+								<span class="label" id="lblField1">Field 1</span>
 								<div class="input-group">
 									<span class="input-group-addon" id="basic-addon1">
                     <span class="glyphicon glyphicon-file" aria-hidden="true"></span>
@@ -167,6 +188,7 @@
 								</div>
 							</div>
 							<div class="inputs">
+								<span class="label" id="lblField2">Field 2</span>
 								<div class="input-group">
 									<span class="input-group-addon" id="basic-addon1">
                     <span class="glyphicon glyphicon-file" aria-hidden="true"></span>
@@ -175,6 +197,7 @@
 								</div>
 							</div>
 							<div class="inputs">
+								<span class="label" id="lblField3">Field 3</span>
 								<div class="input-group">
 									<span class="input-group-addon" id="basic-addon1">
                     <span class="glyphicon glyphicon-file" aria-hidden="true"></span>
@@ -185,11 +208,13 @@
 								</div>
 							</div>
 							<div class="inputs">
+								<span class="label" id="lblField4">Field 4</span>
 								<select id="cmbField4" class="combobox-ui">
 						<option data-i18n="CRMLite.SelectOption" disabled="true" selected="true" value="">Select an option</option>
 					</select>
 							</div>
 							<div class="inputs">
+								<span class="label">Field 5</span>
 								<select id="cmbField5" class="combobox-ui">
 						<option data-i18n="CRMLite.SelectOption" disabled="true" selected="true" value="">Select an option</option>
 					</select>

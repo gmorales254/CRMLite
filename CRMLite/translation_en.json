@@ -16,6 +16,12 @@
         "SelectOption": "Select an option",
         "SelectCampaign": "Select a campaign",
         "newFile": "New File (url)",
-        "disposition": "Disposition"
+        "disposition": "Disposition",
+        "sureDelete": "Do you want to delete this record?",
+        "warning": "Warning",
+        "congrats": "Congratulations",
+        "deleteCustomerOk": "The customers has been delete successfully",
+        "operationError": "We have some issues exprience, please try later",
+        "phoneEmpty": "the phone number is empty"
     }
 }
