@@ -184,11 +184,11 @@ Please, follow the order, step by step, to complete this transaction to your new
 
 ```sql
 INSERT INTO ccrepo.CRMLite_customers
-(document, name, address, phone, agent, date, country, state, city, field1, field2, field3 )
-SELECT documento, nombrecompleto, direccion, tel1, agente, fecha,
+(document, name, email, address, phone, agent, date, country, state, city, field1, field2, field3 )
+SELECT documento, nombrecompleto, '', direccion, tel1, agente, fecha,
 pais, estado, ciudad, campolibre1, campolibre2, campolibre3 FROM ccrepo.CRM_Clientes
 WHERE tel1 NOT IN (SELECT phone FROM ccrepo.CRMLite_customers)
-AND tel1 NOT NULL GROUP BY tel1;
+GROUP BY tel1;
 ```
 
 ```sql
@@ -196,7 +196,7 @@ INSERT INTO ccrepo.CRMLite_management
 (date, agent, lvl1, lvl2, lvl3, note, queuename, channel, guid, callid)
 SELECT fecha, agente, res1, res2, res3, comentarios, campana, "telephony", guid, telMarcado
 FROM ccrepo.CRM_Gestiones
-WHERE telMarcado IN (SELECT phone FROM ccrepo.CRM_customers);
+WHERE telMarcado IN (SELECT phone FROM ccrepo.CRMLite_customers);
 ```
 
 ```sql
