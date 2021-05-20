@@ -168,12 +168,26 @@ CREATE TABLE `CRMLite_management` (
 ) ENGINE=InnoDB AUTO_INCREMENT=109 DEFAULT CHARSET=utf8;
 ```
 
+### CRMLite's report:
+
+```sql
+INSERT INTO ccdata.reports (name, file, description, DSN, parameters, grouped, language, license, visible)
+VALUES ('CRMLite - Management and Customer information detail', 'CRMLiteManagementCustomerDetail.jrxml', '', 'Repo', 'INITIAL_DATE:Timestamp;FINAL_DATE:Timestamp;QUEUE:Queue;', 'CRMLite', 'en', 'CCS', 1),
+('CRMLite - Detalle de gestiones y clientes', 'CRMLiteManagementCustomerDetail.jrxml', 'Gestiones realizadas sobre CRMLite e informacion de los clientes respectivos', 'Repo', 'INITIAL_DATE:Timestamp;FINAL_DATE:Timestamp;QUEUE:Queue;', 'CRMLite', 'es', 'CCS', 1);
+```
+
 ## CRMLite files:
 
 Put the folder named "CRMLite" into this path:
 
 ```bash
 /etc/IntegraServer/web/forms/
+```
+
+The content of the folder "reports" into this another path:
+
+```bash
+/etc/IntegraServer/reports/
 ```
 
 # Transfer information from the old CRM to CRMLite:
@@ -203,4 +217,16 @@ WHERE telMarcado IN (SELECT phone FROM ccrepo.CRMLite_customers);
 UPDATE ccrepo.CRMLite_management crml1, ccrepo.CRMLite_customers crml2
 SET crml1.id_customer = crml2.id_customer
 WHERE crml1.callid = crml2.phone AND crml1.id_customer = 0;
+```
+
+```sql
+INSERT INTO ccdata.dispositions
+(campaign, channel, value1, value2, value3, action, textcode, gamification_measure)
+SELECT DISTINCT campana, "telephony",  res1, res2, res3, action, '', ''  FROM ccrepo.CRM_Result res
+WHERE res.res1 NOT IN
+(SELECT value1 FROM ccdata.dispositions WHERE value1 = res.res1
+AND value2 = res.res2
+AND value3 = res.res3
+AND campaign = res.campana
+AND channel = 'telephony')
 ```
