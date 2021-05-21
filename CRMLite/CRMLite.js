@@ -97,12 +97,12 @@ const formValidation = async (e) => {
       let respi = JSON.parse(await UC_get_async(`SELECT id_customer FROM ccrepo.CRMLite_customers WHERE email = "${e.target.value}" LIMIT 1`, ""));
       if (respi && respi[0].id_customer != customerFound) {
 
-        swal("We found a customer with this same email",
-          "To use this email you most to load the contact information",
+        swal(i18n.t('CRMLite.emailFound'),
+        i18n.t('CRMLite.emailFoundSub'),
           {
             buttons: {
               cancel: true,
-              confirm: "Confirm"
+              confirm: "Ok"
             },
             closeOnClickOutside: false,
           }).then((res) => {
@@ -121,12 +121,12 @@ const formValidation = async (e) => {
       let resp = JSON.parse(await UC_get_async(`SELECT id_customer FROM ccrepo.CRMLite_customers WHERE phone = "${e.target.value}" LIMIT 1`, ""));
       if (resp && resp[0].id_customer != customerFound) {
 
-        swal("We found a customer with this phone",
-          "To use this number you most to load the contact information",
+        swal(i18n.t('CRMLite.phoneFound'),
+          i18n.t('CRMLite.phoneFoundSub'),
           {
             buttons: {
               cancel: true,
-              confirm: "Confirm"
+              confirm: "Ok"
             },
             closeOnClickOutside: false,
           }).then((res) => {
@@ -215,14 +215,14 @@ async function ReactcheckValidity() {
 // SEARCH 
 document.getElementById('btnSearch').addEventListener('click', async () => {
   if (!document.getElementById('txtSearch').value) {
-    notification('Warning', "The input is empty", "fa fa-warning", "warning");
+    notification(i18n.t('CRMLite.warning'), i18n.t("CRMLite.emptyField"), "fa fa-warning", "warning");
     return null;
   }
 
   let resp = await loadCustomer(document.getElementById('txtSearch').value, true);
   if (resp != 0) {
-    swal("Great news",
-      `The customer ${resp.name} can be loaded`,
+    swal(i18n.t('CRMLite.congrats'),
+  `${i18n.t('CRMLite.canLoadCustomer')} (${resp.name})`,
       {
         buttons: {
           cancel: true,
@@ -236,11 +236,10 @@ document.getElementById('btnSearch').addEventListener('click', async () => {
       });
 
   } else {
-    swal("We don't found the customer",
-      "try again with another params", {
+    swal(i18n.t('CRMLite.customerDontFound'),
+    i18n.t('CRMLite.tryLater'), {
         buttons: {
-          cancel: true,
-          confirm: "Thanks"
+          confirm: "OK"
         }
       });
   }
@@ -266,11 +265,10 @@ document.getElementById('btnSave').addEventListener('click', async () => {
     } else if (globalaction === 'RESCHEDULE') {
 
       if (!document.getElementById('dateframe').value) {
-        notification('Sorry', 'please, choose a date for schedule', 'fa fa-warning', 'warning');
+        notification(i18n.t('CRMLite.sorry'), i18n.t('CRMLite.chooseSchedule'), 'fa fa-warning', 'warning');
         return;
       }
       await makeReschedule();
-
     }
 
     let campana = document.getElementById('cmbCampaign').value.split(' ')[0];
@@ -301,7 +299,7 @@ document.getElementById('btnSave').addEventListener('click', async () => {
       UC_TagRecord(GUID, tag);
 
       if (guardado !== "OK") {
-        notification("Bad request", "Ups! It's me, not you. Try again", 'fa fa-times', 'danger');
+        notification(i18n.t('CRMLite.sorry'), i18n.t('CRMLite.operationError'), 'fa fa-times', 'danger');
         return;
       }
 
@@ -329,12 +327,12 @@ document.getElementById('btnSave').addEventListener('click', async () => {
 
     if (ress === "OK") {
 
-      notification('Congratulation!', '', 'fa fa-success', 'success');
+      notification(i18n.t('CRMLite.congrats'), i18n.t('CRMLite.saveManagment'), 'fa fa-success', 'success');
       UC_closeForm();
 
     }
   } else {
-    notification("Disposition", "The disposition is not completed", 'fa fa-times', 'danger');
+    notification(i18n.t("CRMLite.warning"), i18n.t("CRMLite.dispoError"), 'fa fa-times', 'danger');
   }
 
 });
@@ -397,11 +395,11 @@ async function saveContactInfo() {
 
 
 
-    notification('Congrats!', "The contact information was save", "fa fa-success", "success")
+    notification(i18n.t('CRMLite.congrats'), i18n.t("CRMLite.saveManagment"), "fa fa-success", "success")
     return true;
 
   } else {
-    notification('Warning', "The form is not complete or valid at all", "fa fa-warning", "warning");
+    notification(i18n.t("CRMLite.warning"), i18n.t("CRMLite.formInvalid"), "fa fa-warning", "warning");
     return false;
   }
 }
@@ -421,7 +419,6 @@ document.getElementById('attendTransferAddon').addEventListener('click', async (
 
   }
 })
-
 
 //makeReschedule
 async function makeReschedule() {
@@ -469,7 +466,7 @@ document.getElementById('btnClean').addEventListener('click', async () => {
     swal(i18n.t("CRMLite.warning"), i18n.t("CRMLite.sureDelete"), 'warning', {
       buttons: {
         cancel: true,
-        confirm: "Confirm"
+        confirm: "OK"
       }
     }).then(async (res) => {
       if (res) {
@@ -501,11 +498,11 @@ document.getElementById('phoneAddon').addEventListener('click', () => {
 //Agregar un archivo de tipo link
 document.getElementById('bdgNewfile').addEventListener('click', () => {
   swal({
-    title: "Add a new link to your file step: 1/2",
+  title: `${i18n.t('CRMLite.addFileTitle')}: 1/2`,
     content: {
       element: "input",
       attributes: {
-        placeholder: "Type the file name with extension ('Document.pdf')",
+        placeholder: i18n.t('CRMLite.addFile1'),
         type: "text",
         id: 'inpDocName',
         required: true
@@ -520,11 +517,11 @@ document.getElementById('bdgNewfile').addEventListener('click', () => {
 
     if (urlname) {
       swal({
-        title: "Add a new link to your file (URL), step: 2/2",
+        title: `${i18n.t('CRMLite.addFileTitle')}: 2/2`,
         content: {
           element: "input",
           attributes: {
-            placeholder: "Paste here the file URL",
+            placeholder: i18n.t('CRMLite.addFile2'),
             type: "text",
             id: 'inpUrlDoc'
           },
@@ -597,13 +594,13 @@ async function init() {
 
   $('#cmbField4').empty();
   $("#cmbField4").trigger("chosen:updated");
-  $('#cmbField4').prepend("<option disabled selected value>Select an option..</option>");
+$('#cmbField4').prepend(`<option disabled selected value>${i18n.t('CRMLite.SelectOption')}</option>`);
   config.fieldsCmb.cmb1.map((item) => $('#cmbField4').append(new Option(item, item)));
   $("#cmbField4").trigger("chosen:updated");
 
   $('#cmbField5').empty();
   $("#cmbField5").trigger("chosen:updated");
-  $('#cmbField5').prepend("<option disabled selected value>Select an option..</option>");
+  $('#cmbField5').prepend(`<option disabled selected value>${i18n.t('CRMLite.SelectOption')}</option>`);
   config.fieldsCmb.cmb2.map((item) => $('#cmbField5').append(new Option(item, item)));
   $("#cmbField5").trigger("chosen:updated");
 
@@ -653,7 +650,7 @@ async function init() {
       document.getElementById('cmbCampaign').disabled = true;
       completarD1();
       callid = CTIParse.Callerid
-      notification('Hey!', "We can't load the contact information from messenger, search it by phone or email.", 'fa fa-warning', 'warning');
+      notification(i18n.t('CRMLite.sorry'), i18n.t('CRMLite.cantloadMsg'), 'fa fa-info', 'info');
     }
 
   } else if (CTI) {
@@ -716,7 +713,7 @@ async function loadCampaigns() {
   //cargo los datos recogidos:
   $('#cmbCampaign').empty();
   $("#cmbCampaign").trigger("chosen:updated");
-  $('#cmbCampaign').prepend("<option disabled selected value>Select a campaign..</option>");
+$('#cmbCampaign').prepend(`<option disabled selected value>${i18n.t('CRMLite.SelectCampaign')}</option>`);
   campaigns.map((item) => $('#cmbCampaign').append(new Option(item, item)));
   $("#cmbCampaign").trigger("chosen:updated");
 }
@@ -743,7 +740,7 @@ async function completarD1() {
   if (respuesta[0].value1.length > 0) {
     $('#cmbRes1').empty();
     $("#cmbRes1").trigger("chosen:updated");
-    $('#cmbRes1').prepend("<option disabled selected value>Select a disposition</option>");
+    $('#cmbRes1').prepend(`<option disabled selected value>${i18n.t('CRMLite.dispo1')}</option>`);
     respuesta.map((item) => $('#cmbRes1').append(new Option(item.value1, item.value1)));
     $("#cmbRes1").trigger("chosen:updated");
   }
@@ -762,7 +759,7 @@ $('#cmbRes1').change(async () => {
   if (respuesta[0].value2.length > 0) {
     hayMasTipificaciones = true;
     $("#cmbRes2").trigger("chosen:updated");
-    $('#cmbRes2').prepend("<option disabled selected value>Select a disposition</option>");
+    $('#cmbRes2').prepend(`<option disabled selected value>${i18n.t('CRMLite.dispo2')}</option>`);
     respuesta.map((item) => $('#cmbRes2').append(new Option(item.value2, item.value2)));
     $("#cmbRes2").trigger("chosen:updated");
   } else {
@@ -788,7 +785,7 @@ $('#cmbRes2').change(async () => {
   if (respuesta[0].value3.length > 0) {
     hayMasTipificaciones = true;
     $("#cmbRes3").trigger("chosen:updated");
-    $('#cmbRes3').prepend("<option disabled selected value>Select a disposition</option>");
+    $('#cmbRes3').prepend(`<option disabled selected value>${i18n.t('CRMLite.dispo3')}</option>`);
     respuesta.map((item) => $('#cmbRes3').append(new Option(item.value3, item.value3)));
     $("#cmbRes3").trigger("chosen:updated");
   } else {
@@ -871,7 +868,7 @@ async function loadCustomer(callid, justAsking = false) { //phone or email
     resp[0].field5 ? document.getElementById('cmbField5').value = resp[0].field5 : null
     resp[0].files ? await loadFiles(resp[0].files) : null;
     customerFound = Number(resp[0].id_customer);
-    notification('Congrats!', 'The customer was loaded successfully', 'fa fa-success', 'success');
+    notification(i18n.t('CRMLite.congrats'), i18n.t("CRMLite.customerLoaded"), 'fa fa-success', 'success');
     manualFormValidation();
     await loadHistoryTable(customerFound, config.historyLimit);
 
@@ -965,10 +962,10 @@ async function updateBadges() {
       console.log(e.path[0].dataset.posicion); //de aqui sacaremos la posicion del mismo para eliminarlo del array
 
       swal({
-        title: "Are you sure?",
+        title: i18n.t("CRMLite.sure"),
         buttons: {
           cancel: true,
-          confirm: "Confirm"
+          confirm: "Ok"
         },
         closeOnClickOutside: false,
       }).then((res) => {
@@ -994,3 +991,11 @@ async function updateBadges() {
     });
   }
 }
+
+
+
+
+
+
+
+
