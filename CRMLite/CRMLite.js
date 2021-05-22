@@ -86,7 +86,7 @@ const fields = {
 const formValidation = async (e) => {
   switch (e.target.name) {
     case "document":
-      fieldValidation(expresiones.doc, e.target, 'txtDocument', false);
+      fieldValidation(expresiones.doc, e.target, 'txtDocument', true);
       break;
     case "name":
       fieldValidation(expresiones.texto, e.target, 'txtName', true);
@@ -94,6 +94,7 @@ const formValidation = async (e) => {
     case "email":
       fieldValidation(expresiones.correo, e.target, 'txtEmail', true);
 
+      if(!fields.txtEmail || !e.target.value) return; 
       let respi = JSON.parse(await UC_get_async(`SELECT id_customer FROM ccrepo.CRMLite_customers WHERE email = "${e.target.value}" LIMIT 1`, ""));
       if (respi && respi[0].id_customer != customerFound) {
 
@@ -118,6 +119,9 @@ const formValidation = async (e) => {
 
     case "phone":
       fieldValidation(expresiones.telefono, e.target, 'txtPhone', true);
+
+      if(!fields.txtPhone  || !e.target.value) return;
+      
       let resp = JSON.parse(await UC_get_async(`SELECT id_customer FROM ccrepo.CRMLite_customers WHERE phone = "${e.target.value}" LIMIT 1`, ""));
       if (resp && resp[0].id_customer != customerFound) {
 
@@ -991,11 +995,3 @@ async function updateBadges() {
     });
   }
 }
-
-
-
-
-
-
-
-
