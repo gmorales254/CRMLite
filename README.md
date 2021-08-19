@@ -115,7 +115,7 @@ CREATE TABLE `CRMLite_customers` (
   `email` varchar(100) NOT NULL,
   `address` mediumtext DEFAULT NULL,
   `colony` varchar(200) DEFAULT NULL,
-  `cp` int(6) DEFAULT 0,
+  `cp` varchar(10),
   `city` varchar(100) DEFAULT NULL,
   `state` varchar(100) DEFAULT NULL,
   `country` varchar(200) DEFAULT NULL,
