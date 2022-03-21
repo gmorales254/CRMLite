@@ -1,14 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Created with Jaspersoft Studio version 6.4.3.final using JasperReports Library version 6.4.3  -->
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="DetalleClienteGestionesLlamadaCRM" pageWidth="5000" pageHeight="842" columnWidth="4960" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" resourceBundle="CRMLite" isIgnorePagination="true" uuid="e6e93d1a-261b-4985-86d9-a73837ea9a10">
+<!-- Created with Jaspersoft Studio version 6.13.0.final using JasperReports Library version 6.13.0-46ada4d1be8f3c5985fd0b6146f3ed44caed6f05  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="DetalleClienteGestionesLlamadaCRM" pageWidth="2890" pageHeight="842" columnWidth="2850" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" resourceBundle="CRMLite" isIgnorePagination="true" uuid="e6e93d1a-261b-4985-86d9-a73837ea9a10">
 	<property name="ireport.zoom" value="2.0"/>
 	<property name="ireport.x" value="16"/>
 	<property name="ireport.y" value="0"/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
 	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w1" value="0"/>
 	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w2" value="1000"/>
-	<property name="com.jaspersoft.studio.unit." value="pixel"/>
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.unit.pageHeight" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.topMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.bottomMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.leftMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.rightMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnSpacing" value="pixel"/>
 	<parameter name="INITIAL_DATE" class="java.sql.Timestamp">
 		<parameterDescription><![CDATA[Initial date for the query]]></parameterDescription>
 	</parameter>
@@ -17,34 +24,21 @@
 	</parameter>
 	<parameter name="QUEUE" class="java.lang.String"/>
 	<queryString language="SQL">
-		<![CDATA[SELECT  mng.date, crm.id_customer, crm.document, crm.name, crm.phone, crm.email, crm.address, crm.colony, 
-crm.cp, crm.city, crm.state, crm.country, crm.field1, crm.field2, crm.field3,
-crm.field4, crm.field5, mng.queuename, mng.agent, mng.lvl1, mng.lvl2, mng.lvl3, mng.note, mng.channel, mng.callid
-FROM CRMLite_customers crm
+		<![CDATA[SELECT  mng.date, crm.id, crm.name, crm.phone, crm.email, 
+mng.queuename, mng.agent, mng.lvl1, mng.lvl2, mng.lvl3, mng.note, mng.channel, mng.callid
+FROM CRMLite_customersV2 crm
 LEFT JOIN CRMLite_management mng
-ON crm.id_customer = mng.id_customer
+ON crm.id = mng.id_customer
 WHERE mng.queuename IN ($P!{QUEUE})
 AND mng.date >= '$P!{INITIAL_DATE}' AND mng.date <= '$P!{FINAL_DATE}'
 GROUP BY mng.guid 
 ORDER BY mng.date DESC]]>
 	</queryString>
 	<field name="date" class="java.sql.Timestamp"/>
-	<field name="id_customer" class="java.lang.Integer"/>
-	<field name="document" class="java.lang.String"/>
+	<field name="id" class="java.lang.String"/>
 	<field name="name" class="java.lang.String"/>
 	<field name="phone" class="java.lang.String"/>
 	<field name="email" class="java.lang.String"/>
-	<field name="address" class="java.lang.String"/>
-	<field name="colony" class="java.lang.String"/>
-	<field name="cp" class="java.lang.Integer"/>
-	<field name="city" class="java.lang.String"/>
-	<field name="state" class="java.lang.String"/>
-	<field name="country" class="java.lang.String"/>
-	<field name="field1" class="java.lang.String"/>
-	<field name="field2" class="java.lang.String"/>
-	<field name="field3" class="java.lang.String"/>
-	<field name="field4" class="java.lang.String"/>
-	<field name="field5" class="java.lang.String"/>
 	<field name="queuename" class="java.lang.String"/>
 	<field name="agent" class="java.lang.String"/>
 	<field name="lvl1" class="java.lang.String"/>
@@ -59,13 +53,13 @@ ORDER BY mng.date DESC]]>
 	<title>
 		<band height="201">
 			<line>
-				<reportElement x="0" y="12" width="4928" height="1" uuid="17d12a7a-932a-4de8-a1ca-d04cc4380dba"/>
+				<reportElement x="0" y="12" width="2839" height="1" uuid="17d12a7a-932a-4de8-a1ca-d04cc4380dba"/>
 			</line>
 			<line>
-				<reportElement positionType="FixRelativeToBottom" x="0" y="70" width="4928" height="1" uuid="7a434174-db1b-4d3f-834a-96369867e56e"/>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="70" width="2839" height="1" uuid="7a434174-db1b-4d3f-834a-96369867e56e"/>
 			</line>
 			<textField>
-				<reportElement mode="Transparent" x="110" y="12" width="4818" height="45" forecolor="#000000" backcolor="#FFFFFF" uuid="5629eef4-175f-4165-b9c6-bb4cb2cf87b2"/>
+				<reportElement mode="Transparent" x="110" y="12" width="2729" height="45" forecolor="#000000" backcolor="#FFFFFF" uuid="5629eef4-175f-4165-b9c6-bb4cb2cf87b2"/>
 				<box padding="0" topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
 					<font fontName="SansSerif" size="16" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
@@ -120,21 +114,21 @@ ORDER BY mng.date DESC]]>
 				<textFieldExpression><![CDATA[$R{FULLNAME}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="4180" y="102" width="40" height="19" uuid="f517c980-46f8-4322-86e5-08ac3ecd1eb4"/>
+				<reportElement x="2081" y="103" width="40" height="19" uuid="f517c980-46f8-4322-86e5-08ac3ecd1eb4"/>
 				<textElement textAlignment="Right">
 					<font size="10"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$R{QUEUE}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="4398" y="100" width="530" height="54" uuid="044fda40-44a2-4e44-a5c6-16a57bd4d222"/>
+				<reportElement x="2299" y="101" width="530" height="54" uuid="044fda40-44a2-4e44-a5c6-16a57bd4d222"/>
 				<textElement textAlignment="Center">
 					<font size="10" isItalic="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{QUEUE}.toString()]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement mode="Opaque" x="610" y="178" width="130" height="18" forecolor="#FFFFFF" backcolor="#999999" uuid="9413420c-fc97-49ed-9f03-4d04770f52f7"/>
+				<reportElement mode="Opaque" x="480" y="178" width="130" height="18" forecolor="#FFFFFF" backcolor="#999999" uuid="9413420c-fc97-49ed-9f03-4d04770f52f7"/>
 				<box padding="0" topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0"/>
 				<textElement textAlignment="Center" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="SansSerif" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
@@ -152,43 +146,7 @@ ORDER BY mng.date DESC]]>
 				<textFieldExpression><![CDATA[$R{IDCUSTOMER}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement mode="Opaque" x="932" y="178" width="299" height="18" forecolor="#FFFFFF" backcolor="#999999" uuid="f362adbd-a09d-4079-aa69-5af7378dac3f"/>
-				<box padding="0" topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0"/>
-				<textElement textAlignment="Center" verticalAlignment="Top" rotation="None" markup="none">
-					<font fontName="SansSerif" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
-					<paragraph lineSpacing="Single" lineSpacingSize="1.0" firstLineIndent="0" leftIndent="0" rightIndent="0" spacingBefore="0" spacingAfter="0" tabStopWidth="40"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$R{ADDRESS}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement mode="Opaque" x="1730" y="178" width="199" height="18" forecolor="#FFFFFF" backcolor="#999999" uuid="5efef184-46b0-4719-b185-b36e4fcbb11c"/>
-				<box padding="0" topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0"/>
-				<textElement textAlignment="Center" verticalAlignment="Top" rotation="None" markup="none">
-					<font fontName="SansSerif" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
-					<paragraph lineSpacing="Single" lineSpacingSize="1.0" firstLineIndent="0" leftIndent="0" rightIndent="0" spacingBefore="0" spacingAfter="0" tabStopWidth="40"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$R{COUNTRY}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement mode="Opaque" x="1470" y="178" width="130" height="18" forecolor="#FFFFFF" backcolor="#999999" uuid="52e4f6b9-a240-495e-b732-dd8b93f44310"/>
-				<box padding="0" topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0"/>
-				<textElement textAlignment="Center" verticalAlignment="Top" rotation="None" markup="none">
-					<font fontName="SansSerif" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
-					<paragraph lineSpacing="Single" lineSpacingSize="1.0" firstLineIndent="0" leftIndent="0" rightIndent="0" spacingBefore="0" spacingAfter="0" tabStopWidth="40"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$R{CITY}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement mode="Opaque" x="1600" y="178" width="130" height="18" forecolor="#FFFFFF" backcolor="#999999" uuid="2b5c8454-eb3a-41ad-b078-ea38aed43b1e"/>
-				<box padding="0" topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0"/>
-				<textElement textAlignment="Center" verticalAlignment="Top" rotation="None" markup="none">
-					<font fontName="SansSerif" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
-					<paragraph lineSpacing="Single" lineSpacingSize="1.0" firstLineIndent="0" leftIndent="0" rightIndent="0" spacingBefore="0" spacingAfter="0" tabStopWidth="40"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$R{STATE}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement mode="Opaque" x="740" y="178" width="191" height="18" forecolor="#FFFFFF" backcolor="#999999" uuid="31991445-7bed-4e98-b7fd-33038a1b7f33"/>
+				<reportElement mode="Opaque" x="610" y="178" width="321" height="18" forecolor="#FFFFFF" backcolor="#999999" uuid="31991445-7bed-4e98-b7fd-33038a1b7f33"/>
 				<box padding="0" topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0"/>
 				<textElement textAlignment="Center" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="SansSerif" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
@@ -197,62 +155,7 @@ ORDER BY mng.date DESC]]>
 				<textFieldExpression><![CDATA[$R{EMAIL}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement mode="Opaque" x="2590" y="178" width="220" height="18" forecolor="#FFFFFF" backcolor="#999999" uuid="69a04908-8b87-4cb1-9283-adc1147953af">
-					<property name="com.jaspersoft.studio.unit.width" value="px"/>
-				</reportElement>
-				<box padding="0" topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0"/>
-				<textElement textAlignment="Center" verticalAlignment="Top" rotation="None" markup="none">
-					<font fontName="SansSerif" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
-					<paragraph lineSpacing="Single" lineSpacingSize="1.0" firstLineIndent="0" leftIndent="0" rightIndent="0" spacingBefore="0" spacingAfter="0" tabStopWidth="40"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$R{FREEFIELD}+"4"]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement mode="Opaque" x="2810" y="178" width="220" height="18" forecolor="#FFFFFF" backcolor="#999999" uuid="2a1f38bf-9f25-4af7-aa4b-33a8bfa4790d">
-					<property name="com.jaspersoft.studio.unit.width" value="px"/>
-				</reportElement>
-				<box padding="0" topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0"/>
-				<textElement textAlignment="Center" verticalAlignment="Top" rotation="None" markup="none">
-					<font fontName="SansSerif" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
-					<paragraph lineSpacing="Single" lineSpacingSize="1.0" firstLineIndent="0" leftIndent="0" rightIndent="0" spacingBefore="0" spacingAfter="0" tabStopWidth="40"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$R{FREEFIELD}+"5"]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement mode="Opaque" x="1929" y="178" width="220" height="18" forecolor="#FFFFFF" backcolor="#999999" uuid="93c1ee0d-5e95-4779-b910-a86e6796eef5">
-					<property name="com.jaspersoft.studio.unit.width" value="px"/>
-				</reportElement>
-				<box padding="0" topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0"/>
-				<textElement textAlignment="Center" verticalAlignment="Top" rotation="None" markup="none">
-					<font fontName="SansSerif" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
-					<paragraph lineSpacing="Single" lineSpacingSize="1.0" firstLineIndent="0" leftIndent="0" rightIndent="0" spacingBefore="0" spacingAfter="0" tabStopWidth="40"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$R{FREEFIELD}+"1"]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement mode="Opaque" x="2150" y="178" width="220" height="18" forecolor="#FFFFFF" backcolor="#999999" uuid="f4620c23-f615-45f5-ae0e-cc1d481d2f37">
-					<property name="com.jaspersoft.studio.unit.width" value="px"/>
-				</reportElement>
-				<box padding="0" topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0"/>
-				<textElement textAlignment="Center" verticalAlignment="Top" rotation="None" markup="none">
-					<font fontName="SansSerif" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
-					<paragraph lineSpacing="Single" lineSpacingSize="1.0" firstLineIndent="0" leftIndent="0" rightIndent="0" spacingBefore="0" spacingAfter="0" tabStopWidth="40"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$R{FREEFIELD}+"2"]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement mode="Opaque" x="2370" y="178" width="220" height="18" forecolor="#FFFFFF" backcolor="#999999" uuid="e62a940a-acc6-44d9-bf7d-7ab7ede01b64">
-					<property name="com.jaspersoft.studio.unit.width" value="px"/>
-				</reportElement>
-				<box padding="0" topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0"/>
-				<textElement textAlignment="Center" verticalAlignment="Top" rotation="None" markup="none">
-					<font fontName="SansSerif" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
-					<paragraph lineSpacing="Single" lineSpacingSize="1.0" firstLineIndent="0" leftIndent="0" rightIndent="0" spacingBefore="0" spacingAfter="0" tabStopWidth="40"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$R{FREEFIELD}+"3"]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement mode="Opaque" x="4170" y="178" width="420" height="18" forecolor="#FFFFFF" backcolor="#999999" uuid="cfbdf330-ed79-4d1a-87af-2c11ef458830"/>
+				<reportElement mode="Opaque" x="2071" y="178" width="420" height="18" forecolor="#FFFFFF" backcolor="#999999" uuid="cfbdf330-ed79-4d1a-87af-2c11ef458830"/>
 				<box padding="0" topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0"/>
 				<textElement textAlignment="Center" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="SansSerif" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
@@ -261,7 +164,7 @@ ORDER BY mng.date DESC]]>
 				<textFieldExpression><![CDATA[$R{COMMENT}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement mode="Opaque" x="3890" y="178" width="280" height="18" forecolor="#FFFFFF" backcolor="#999999" uuid="1866e128-97d5-4175-a49d-c7ad0920d006"/>
+				<reportElement mode="Opaque" x="1791" y="178" width="280" height="18" forecolor="#FFFFFF" backcolor="#999999" uuid="1866e128-97d5-4175-a49d-c7ad0920d006"/>
 				<box padding="0" topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0"/>
 				<textElement textAlignment="Center" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="SansSerif" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
@@ -270,7 +173,7 @@ ORDER BY mng.date DESC]]>
 				<textFieldExpression><![CDATA[$R{RESULT3}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement mode="Opaque" x="3610" y="178" width="280" height="18" forecolor="#FFFFFF" backcolor="#999999" uuid="fa0fd2a8-3d77-423b-817f-b1e6fc2732c8">
+				<reportElement mode="Opaque" x="1511" y="178" width="280" height="18" forecolor="#FFFFFF" backcolor="#999999" uuid="fa0fd2a8-3d77-423b-817f-b1e6fc2732c8">
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
 				<box padding="0" topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0"/>
@@ -281,7 +184,7 @@ ORDER BY mng.date DESC]]>
 				<textFieldExpression><![CDATA[$R{RESULT2}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement mode="Opaque" x="3330" y="178" width="280" height="18" forecolor="#FFFFFF" backcolor="#999999" uuid="7e999310-4c5a-4237-8c54-e1eeae59ac28">
+				<reportElement mode="Opaque" x="1231" y="178" width="280" height="18" forecolor="#FFFFFF" backcolor="#999999" uuid="7e999310-4c5a-4237-8c54-e1eeae59ac28">
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
 				<box padding="0" topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0"/>
@@ -292,7 +195,7 @@ ORDER BY mng.date DESC]]>
 				<textFieldExpression><![CDATA[$R{RESULT1}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement mode="Opaque" x="3030" y="178" width="150" height="18" forecolor="#FFFFFF" backcolor="#999999" uuid="da9d8638-e50d-47a5-af70-0bfd28748e58"/>
+				<reportElement mode="Opaque" x="931" y="178" width="150" height="18" forecolor="#FFFFFF" backcolor="#999999" uuid="da9d8638-e50d-47a5-af70-0bfd28748e58"/>
 				<box padding="0" topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0"/>
 				<textElement textAlignment="Center" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="SansSerif" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
@@ -301,7 +204,7 @@ ORDER BY mng.date DESC]]>
 				<textFieldExpression><![CDATA[$R{QUEUE}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement mode="Opaque" x="4778" y="178" width="150" height="18" forecolor="#FFFFFF" backcolor="#999999" uuid="1106ea4a-de46-4483-ad46-a618d33b50b3"/>
+				<reportElement mode="Opaque" x="2679" y="178" width="150" height="18" forecolor="#FFFFFF" backcolor="#999999" uuid="1106ea4a-de46-4483-ad46-a618d33b50b3"/>
 				<box padding="0" topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0"/>
 				<textElement textAlignment="Center" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="SansSerif" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
@@ -310,7 +213,7 @@ ORDER BY mng.date DESC]]>
 				<textFieldExpression><![CDATA[$R{CALLID}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement mode="Opaque" x="4590" y="178" width="188" height="18" forecolor="#FFFFFF" backcolor="#999999" uuid="dacb1726-12a3-47ab-935f-359e797d44bb"/>
+				<reportElement mode="Opaque" x="2491" y="178" width="188" height="18" forecolor="#FFFFFF" backcolor="#999999" uuid="dacb1726-12a3-47ab-935f-359e797d44bb"/>
 				<box padding="0" topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0"/>
 				<textElement textAlignment="Center" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="SansSerif" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
@@ -319,40 +222,13 @@ ORDER BY mng.date DESC]]>
 				<textFieldExpression><![CDATA[$R{CHANNEL}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement mode="Opaque" x="3180" y="178" width="150" height="18" forecolor="#FFFFFF" backcolor="#999999" uuid="ec881025-f6f8-49b1-bb41-3125f95ee62e"/>
+				<reportElement mode="Opaque" x="1081" y="178" width="150" height="18" forecolor="#FFFFFF" backcolor="#999999" uuid="ec881025-f6f8-49b1-bb41-3125f95ee62e"/>
 				<box padding="0" topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0"/>
 				<textElement textAlignment="Center" verticalAlignment="Top" rotation="None" markup="none">
 					<font fontName="SansSerif" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 					<paragraph lineSpacing="Single" lineSpacingSize="1.0" firstLineIndent="0" leftIndent="0" rightIndent="0" spacingBefore="0" spacingAfter="0" tabStopWidth="40"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$R{AGENT}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement mode="Opaque" x="480" y="178" width="130" height="18" forecolor="#FFFFFF" backcolor="#999999" uuid="897a6ee8-ccb0-4c3f-9740-832cd754ad4d"/>
-				<box padding="0" topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0"/>
-				<textElement textAlignment="Center" verticalAlignment="Top" rotation="None" markup="none">
-					<font fontName="SansSerif" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
-					<paragraph lineSpacing="Single" lineSpacingSize="1.0" firstLineIndent="0" leftIndent="0" rightIndent="0" spacingBefore="0" spacingAfter="0" tabStopWidth="40"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$R{DOCUMENT}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement mode="Opaque" x="1350" y="178" width="119" height="18" forecolor="#FFFFFF" backcolor="#999999" uuid="ce22af6a-a74d-4e4c-ad20-5328a30c6b71"/>
-				<box padding="0" topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0"/>
-				<textElement textAlignment="Center" verticalAlignment="Top" rotation="None" markup="none">
-					<font fontName="SansSerif" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
-					<paragraph lineSpacing="Single" lineSpacingSize="1.0" firstLineIndent="0" leftIndent="0" rightIndent="0" spacingBefore="0" spacingAfter="0" tabStopWidth="40"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$R{CP}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement mode="Opaque" x="1231" y="178" width="119" height="18" forecolor="#FFFFFF" backcolor="#999999" uuid="474c7c92-03b1-40ea-bd95-5a51402e8003"/>
-				<box padding="0" topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0"/>
-				<textElement textAlignment="Center" verticalAlignment="Top" rotation="None" markup="none">
-					<font fontName="SansSerif" size="8" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="Helvetica" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
-					<paragraph lineSpacing="Single" lineSpacingSize="1.0" firstLineIndent="0" leftIndent="0" rightIndent="0" spacingBefore="0" spacingAfter="0" tabStopWidth="40"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$R{COLONY}]]></textFieldExpression>
 			</textField>
 		</band>
 	</title>
@@ -364,7 +240,7 @@ ORDER BY mng.date DESC]]>
 			<property name="local_mesure_unitheight" value="pixel"/>
 			<property name="com.jaspersoft.studio.unit.height" value="px"/>
 			<rectangle>
-				<reportElement positionType="FixRelativeToBottom" isPrintRepeatedValues="false" mode="Opaque" x="0" y="0" width="4928" height="20" forecolor="#CCCCCC" backcolor="#CCCCCC" uuid="9b2e9790-33aa-4b62-8764-916bb9cef6c6">
+				<reportElement positionType="FixRelativeToBottom" isPrintRepeatedValues="false" mode="Opaque" x="0" y="0" width="2828" height="20" forecolor="#CCCCCC" backcolor="#CCCCCC" uuid="9b2e9790-33aa-4b62-8764-916bb9cef6c6">
 					<property name="local_mesure_unitwidth" value="pixel"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 					<property name="local_mesure_unitx" value="pixel"/>
@@ -372,7 +248,7 @@ ORDER BY mng.date DESC]]>
 					<printWhenExpression><![CDATA[Boolean.valueOf( $V{PAGE_COUNT}.intValue() % 2 == 0 )]]></printWhenExpression>
 				</reportElement>
 			</rectangle>
-			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+			<textField textAdjust="StretchHeight" isBlankWhenNull="true">
 				<reportElement x="110" y="0" width="270" height="20" uuid="b6a673eb-e1dd-4101-95f3-0878a483d3a8">
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
 					<property name="local_mesure_unitwidth" value="pixel"/>
@@ -383,7 +259,7 @@ ORDER BY mng.date DESC]]>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{name}]]></textFieldExpression>
 			</textField>
-			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+			<textField textAdjust="StretchHeight" isBlankWhenNull="true">
 				<reportElement x="380" y="0" width="100" height="20" uuid="a9e3b7bd-3780-46b6-a730-3cad9983b160">
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
 					<property name="local_mesure_unitwidth" value="pixel"/>
@@ -392,9 +268,9 @@ ORDER BY mng.date DESC]]>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="8"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{id_customer}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{id}]]></textFieldExpression>
 			</textField>
-			<textField isStretchWithOverflow="true" pattern="yyyy.MM.dd hh:mm:ss" isBlankWhenNull="true">
+			<textField textAdjust="StretchHeight" pattern="yyyy.MM.dd hh:mm:ss" isBlankWhenNull="true">
 				<reportElement x="0" y="0" width="110" height="20" uuid="695acf88-b4ce-4e8d-b955-5c040ff9ecb9">
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
 					<property name="local_mesure_unitwidth" value="pixel"/>
@@ -405,19 +281,8 @@ ORDER BY mng.date DESC]]>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{date}]]></textFieldExpression>
 			</textField>
-			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
-				<reportElement x="932" y="0" width="299" height="20" uuid="a31594ea-0308-4c21-88ae-14f1617eba9d">
-					<property name="com.jaspersoft.studio.unit.y" value="px"/>
-					<property name="local_mesure_unitwidth" value="pixel"/>
-					<property name="com.jaspersoft.studio.unit.width" value="px"/>
-				</reportElement>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="8"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{address}]]></textFieldExpression>
-			</textField>
-			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
-				<reportElement mode="Transparent" x="3890" y="0" width="280" height="20" uuid="f4fa9c45-634f-4378-aea3-2b7fb1b06eec">
+			<textField textAdjust="StretchHeight" isBlankWhenNull="true">
+				<reportElement mode="Transparent" x="1791" y="0" width="280" height="20" uuid="f4fa9c45-634f-4378-aea3-2b7fb1b06eec">
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
 					<property name="local_mesure_unitwidth" value="pixel"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
@@ -427,8 +292,8 @@ ORDER BY mng.date DESC]]>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{lvl3}]]></textFieldExpression>
 			</textField>
-			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
-				<reportElement mode="Transparent" x="3610" y="0" width="280" height="20" uuid="59641cea-363d-421a-b639-a83824972fe1">
+			<textField textAdjust="StretchHeight" isBlankWhenNull="true">
+				<reportElement mode="Transparent" x="1511" y="0" width="280" height="20" uuid="59641cea-363d-421a-b639-a83824972fe1">
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
 					<property name="local_mesure_unitwidth" value="pixel"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
@@ -438,8 +303,8 @@ ORDER BY mng.date DESC]]>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{lvl2}]]></textFieldExpression>
 			</textField>
-			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
-				<reportElement mode="Transparent" x="3330" y="0" width="280" height="20" uuid="4dded40d-42f5-4190-adef-1545a02bcf8e">
+			<textField textAdjust="StretchHeight" isBlankWhenNull="true">
+				<reportElement mode="Transparent" x="1231" y="0" width="280" height="20" uuid="4dded40d-42f5-4190-adef-1545a02bcf8e">
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
 					<property name="local_mesure_unitwidth" value="pixel"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
@@ -449,8 +314,8 @@ ORDER BY mng.date DESC]]>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{lvl1}]]></textFieldExpression>
 			</textField>
-			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
-				<reportElement x="3030" y="0" width="150" height="20" uuid="a299e132-70e4-4db9-a134-3f8399cb40e2">
+			<textField textAdjust="StretchHeight" isBlankWhenNull="true">
+				<reportElement x="931" y="0" width="150" height="20" uuid="a299e132-70e4-4db9-a134-3f8399cb40e2">
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
 					<property name="local_mesure_unitwidth" value="pixel"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
@@ -460,8 +325,8 @@ ORDER BY mng.date DESC]]>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{queuename}]]></textFieldExpression>
 			</textField>
-			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
-				<reportElement mode="Transparent" x="4170" y="0" width="420" height="20" uuid="3b1bb4ee-71f2-406d-9946-6c7b77d441f7">
+			<textField textAdjust="StretchHeight" isBlankWhenNull="true">
+				<reportElement mode="Transparent" x="2071" y="0" width="420" height="20" uuid="3b1bb4ee-71f2-406d-9946-6c7b77d441f7">
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
 					<property name="local_mesure_unitwidth" value="pixel"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
@@ -471,8 +336,8 @@ ORDER BY mng.date DESC]]>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{note}]]></textFieldExpression>
 			</textField>
-			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
-				<reportElement mode="Transparent" x="740" y="0" width="191" height="20" uuid="0bd52371-8707-46cc-a4e1-30da070978ae">
+			<textField textAdjust="StretchHeight" isBlankWhenNull="true">
+				<reportElement mode="Transparent" x="610" y="0" width="321" height="20" uuid="0bd52371-8707-46cc-a4e1-30da070978ae">
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
 					<property name="local_mesure_unitwidth" value="pixel"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
@@ -482,41 +347,8 @@ ORDER BY mng.date DESC]]>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{email}]]></textFieldExpression>
 			</textField>
-			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
-				<reportElement mode="Transparent" x="1600" y="0" width="130" height="20" uuid="087d6b27-70a8-4775-9c0e-7dbfb234ea43">
-					<property name="com.jaspersoft.studio.unit.y" value="px"/>
-					<property name="local_mesure_unitwidth" value="pixel"/>
-					<property name="com.jaspersoft.studio.unit.width" value="px"/>
-				</reportElement>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="8"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{state}]]></textFieldExpression>
-			</textField>
-			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
-				<reportElement mode="Transparent" x="1730" y="0" width="199" height="20" uuid="face88d5-d7c8-4dc4-950e-58e486b869fe">
-					<property name="com.jaspersoft.studio.unit.y" value="px"/>
-					<property name="local_mesure_unitwidth" value="pixel"/>
-					<property name="com.jaspersoft.studio.unit.width" value="px"/>
-				</reportElement>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="8"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{country}]]></textFieldExpression>
-			</textField>
-			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
-				<reportElement mode="Transparent" x="1470" y="0" width="130" height="20" uuid="d497b971-1ea0-4615-99c2-fb73a917bc5a">
-					<property name="com.jaspersoft.studio.unit.y" value="px"/>
-					<property name="local_mesure_unitwidth" value="pixel"/>
-					<property name="com.jaspersoft.studio.unit.width" value="px"/>
-				</reportElement>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="8"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{city}]]></textFieldExpression>
-			</textField>
-			<textField isStretchWithOverflow="true">
-				<reportElement mode="Transparent" x="610" y="0" width="130" height="20" uuid="77eacf62-280d-4702-b66c-103cceda6221">
+			<textField textAdjust="StretchHeight">
+				<reportElement mode="Transparent" x="480" y="0" width="130" height="20" uuid="77eacf62-280d-4702-b66c-103cceda6221">
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
 					<property name="local_mesure_unitwidth" value="pixel"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
@@ -526,63 +358,8 @@ ORDER BY mng.date DESC]]>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{phone}]]></textFieldExpression>
 			</textField>
-			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
-				<reportElement mode="Transparent" x="2810" y="0" width="220" height="20" uuid="3d8a6c12-525e-4c11-ab25-398fdf530768">
-					<property name="com.jaspersoft.studio.unit.y" value="px"/>
-					<property name="local_mesure_unitwidth" value="pixel"/>
-					<property name="com.jaspersoft.studio.unit.width" value="px"/>
-				</reportElement>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="8"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{field5}]]></textFieldExpression>
-			</textField>
-			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
-				<reportElement mode="Transparent" x="2590" y="0" width="220" height="20" uuid="1c9d9690-28d8-4b66-934c-b55cf73e760c">
-					<property name="com.jaspersoft.studio.unit.y" value="px"/>
-					<property name="local_mesure_unitwidth" value="pixel"/>
-					<property name="com.jaspersoft.studio.unit.width" value="px"/>
-				</reportElement>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="8"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{field4}]]></textFieldExpression>
-			</textField>
-			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
-				<reportElement mode="Transparent" x="1929" y="0" width="220" height="20" uuid="26d5bf11-7c7c-4a0c-a2dc-dd05576302df">
-					<property name="com.jaspersoft.studio.unit.y" value="px"/>
-					<property name="local_mesure_unitwidth" value="pixel"/>
-					<property name="com.jaspersoft.studio.unit.width" value="px"/>
-				</reportElement>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="8"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{field1}]]></textFieldExpression>
-			</textField>
-			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
-				<reportElement mode="Transparent" x="2150" y="0" width="220" height="20" uuid="c14a83fd-e9ea-489c-b6a5-fd093f3d3d7c">
-					<property name="com.jaspersoft.studio.unit.y" value="px"/>
-					<property name="local_mesure_unitwidth" value="pixel"/>
-					<property name="com.jaspersoft.studio.unit.width" value="px"/>
-				</reportElement>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="8"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{field2}]]></textFieldExpression>
-			</textField>
-			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
-				<reportElement mode="Transparent" x="2370" y="0" width="220" height="20" uuid="5a30b148-7903-40b9-9605-0dafbc990688">
-					<property name="com.jaspersoft.studio.unit.y" value="px"/>
-					<property name="local_mesure_unitwidth" value="pixel"/>
-					<property name="com.jaspersoft.studio.unit.width" value="px"/>
-				</reportElement>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="8"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{field3}]]></textFieldExpression>
-			</textField>
-			<textField isStretchWithOverflow="true" pattern="HH:mm:ss" isBlankWhenNull="true">
-				<reportElement mode="Transparent" x="4778" y="0" width="150" height="20" uuid="ebcabb7d-7ad3-47d2-befc-9eed2a29ff59">
+			<textField textAdjust="StretchHeight" pattern="HH:mm:ss" isBlankWhenNull="true">
+				<reportElement mode="Transparent" x="2679" y="0" width="150" height="20" uuid="ebcabb7d-7ad3-47d2-befc-9eed2a29ff59">
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
 					<property name="local_mesure_unitwidth" value="pixel"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
@@ -592,8 +369,8 @@ ORDER BY mng.date DESC]]>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{callid}]]></textFieldExpression>
 			</textField>
-			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
-				<reportElement x="4590" y="0" width="188" height="20" uuid="b37674da-df89-4383-8c6d-1ae005f87d45">
+			<textField textAdjust="StretchHeight" isBlankWhenNull="true">
+				<reportElement x="2491" y="0" width="188" height="20" uuid="b37674da-df89-4383-8c6d-1ae005f87d45">
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
 					<property name="local_mesure_unitwidth" value="pixel"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
@@ -603,8 +380,8 @@ ORDER BY mng.date DESC]]>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{channel}]]></textFieldExpression>
 			</textField>
-			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
-				<reportElement x="3180" y="0" width="150" height="20" uuid="e9431bb0-ce21-4d12-9f93-b213e3db5c08">
+			<textField textAdjust="StretchHeight" isBlankWhenNull="true">
+				<reportElement x="1081" y="0" width="150" height="20" uuid="e9431bb0-ce21-4d12-9f93-b213e3db5c08">
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
 					<property name="local_mesure_unitwidth" value="pixel"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
@@ -613,39 +390,6 @@ ORDER BY mng.date DESC]]>
 					<font size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{agent}]]></textFieldExpression>
-			</textField>
-			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
-				<reportElement x="480" y="0" width="130" height="20" uuid="35b74205-8bb4-48d5-a107-0364a4c26b98">
-					<property name="com.jaspersoft.studio.unit.y" value="px"/>
-					<property name="local_mesure_unitwidth" value="pixel"/>
-					<property name="com.jaspersoft.studio.unit.width" value="px"/>
-				</reportElement>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="8"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{document}]]></textFieldExpression>
-			</textField>
-			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
-				<reportElement mode="Transparent" x="1350" y="0" width="119" height="20" uuid="a79fcaa8-136e-4ad9-b4ce-f727af6c60d1">
-					<property name="com.jaspersoft.studio.unit.y" value="px"/>
-					<property name="local_mesure_unitwidth" value="pixel"/>
-					<property name="com.jaspersoft.studio.unit.width" value="px"/>
-				</reportElement>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="8"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{cp}]]></textFieldExpression>
-			</textField>
-			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
-				<reportElement mode="Transparent" x="1231" y="0" width="119" height="20" uuid="e2990722-736a-4781-b93a-e67f2f2aa754">
-					<property name="com.jaspersoft.studio.unit.y" value="px"/>
-					<property name="local_mesure_unitwidth" value="pixel"/>
-					<property name="com.jaspersoft.studio.unit.width" value="px"/>
-				</reportElement>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="8"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{colony}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>

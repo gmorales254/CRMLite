@@ -1,3 +1,8 @@
+<style>
+
+</style>
+
+
 <meta charset="utf-8">
 
 <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -8,12 +13,11 @@
 
 	<section>
 		<section class="fila">
-			<div class="containerform">
+			<div class="containerform" style="display: none;">
 				<div class="columna">
 					<div class="inputs">
 						<div class="input-group">
-								
-							<input id="txtSearch" type="text" class="form-control" data-i18n="[title]CRMLite.txtSearch;[placeholder]CRMLite.txtSearch" placeholder="Search by phone, id or email" aria-describedby="basic-addon1" data-toggle="tooltip" title="" data-original-title="Name">
+							<input id="txtSearch" type="text" class="form-control" data-i18n="[title]CRMLite.txtSearch;[placeholder]CRMLite.txtSearch" placeholder="Search by phone number" aria-describedby="basic-addon1" data-toggle="tooltip" title="" data-original-title="Name">
 							<span class="input-group-addon btnsearch" id="btnSearch">
                     <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
 							</span>
@@ -28,6 +32,7 @@
 									<th>id</th>
 									<th>name</th>
 									<th>phone</th>
+									<th>email</th>
 								</tr>
 							</thead>
 							<tbody id="tblBody">
@@ -40,17 +45,11 @@
 		</section>
 		<section class="crmlite-container fila">
 
-			<div class="columna containerform">
+			<div class="columna containerform" style="display: none;">
 				<div class="row">
 					<div class="flex-title">
 						<spam data-i18n="CRMLite.ContactInfo"> Contact information </spam>
-						<div class="badge-help badge-help-primary">
-							<spam>
-								<a style="color: white" data-i18n="CRMLite.howToUse" href="https://www.notion.so/How-to-use-CRMLite-0b3741ef947e46d2a7e6b575647161a7" target="_blank" "="">
-								How to use
-								</a>
-							</spam>
-						</div>
+
 						<div class="cleanbtn">
 							<button id="btnClean" type="button" class="btn btn-danger btn-clean"> 
 					 <i class="fa fa-trash"></i>
@@ -63,163 +62,34 @@
 				 </button>
 						</div>
 
-						<div class="columna">
-						<div id="trasnferinput" class="inputs">
-								<div class="input-group">
-									<span class="input-group-addon" id="attendTransferAddon"><i class="fa fa-mail-reply-all"></i></span>
-									<input id="txtExten" type="text" class="form-control" name="transfer" data-i18n="[placeholder]CRMLite.TypeAnExten" placeholder="Type an exten number.." aria-describedby="basic-addon1" data-toggle="tooltip" title="" data-original-title="Transfer">
+						<div class="cleanbtn">
+							<button id="btnShowScript" type="button" class="btn btn-success btn-altsave"><i class="fa fa-play"></i></button>
+						</div>
+
+						<div class="columna transferInput_container" style="display:none;">
+							<div id="trasnferinput " class="inputs ">
+								<div class="input-group ">
+									<span class="input-group-addon " id="attendTransferAddon "><i class="fa fa-mail-reply-all "></i></span>
+									<input id="txtExten " type="text " class="form-control " name="transfer " data-i18n="[placeholder]CRMLite.TypeAnExten
+									" placeholder="Type an exten number.. " aria-describedby="basic-addon1 " data-toggle="tooltip " title=" " data-original-title="Transfer ">
 								</div>
 							</div>
 						</div>
 
-						
+
 					</div>
-					
+
 					<form id="reactform" class="form-contact">
-						<div class="col-md-4">
-							<div class="inputs">
-								<span data-i18n="CRMLite.txtDocument" class="label">Document</span>
-								
-								<div class="input-group">
-								
-									<span class="input-group-addon" id="basic-addon1">
-								<i class="fa fa-id-card"></i>
-							</span>
-									<input data-i18n="[placeholder]CRMLite.txtDocument" id="txtDocument" type="text" class="form-control" name="document" placeholder="Document" aria-describedby="basic-addon1" data-toggle="tooltip" title="" data-original-title="Document">
-								</div>
-							</div>
-							<div class="inputs">
-								<span data-i18n="CRMLite.txtName" class="label">Name</span>
-								
-								<div class="input-group">
-									<span class="input-group-addon" id="basic-addon1">
-					
-                    <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
-									</span>
-									<input data-i18n="[placeholder]CRMLite.txtName" id="txtName" type="text" class="form-control" name="name" placeholder="Name" aria-describedby="basic-addon1" data-toggle="tooltip" title="" data-original-title="Name">
-								</div>
-							</div>
-							<div class="inputs">
-								<span data-i18n="CRMLite.txtPhone" class="label">Phone</span>
-								<div class="input-group">
-									<span class="input-group-addon" id="phoneAddon"><i class="fa fa-phone"></i>
-						</span>
-									<input data-i18n="[placeholder]CRMLite.txtPhone" id="txtPhone" type="text" class="form-control" name="phone" placeholder="Phone" aria-describedby="basic-addon1" data-toggle="tooltip" title="" data-original-title="Phone">
-								</div>
-							</div>
-							<div class="inputs">
-								<span data-i18n="CRMLite.txtEmail" class="label">Email</span>
-								<div class="input-group">
-									<span class="input-group-addon" id="basic-addon1">
-                    <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
-									</span>
-									<input data-i18n="[placeholder]CRMLite.txtEmail" id="txtEmail" type="text" class="form-control" name="email" placeholder="Email" aria-describedby="basic-addon1" data-toggle="tooltip" title="" data-original-title="Email">
-								</div>
-							</div>
-							<div class="inputs">
-								<span data-i18n="CRMLite.txtAddress" class="label">Address</span>
-								<div class="input-group">
-									<span class="input-group-addon" id="basic-addon1">
-                    <span class="glyphicon glyphicon-home" aria-hidden="true"></span>
-									</span>
-									<input data-i18n="[placeholder]CRMLite.txtAddress" id="txtAddress" type="text" class="form-control" name="address" placeholder="Address" aria-describedby="basic-addon1" data-toggle="tooltip" title="" data-original-title="Address">
-								</div>
-							</div>
+						<div id="col-1" class="col-md-4 col-tres">
+							<!-- CAMPOS A CARGAR DESDE JS -->
 						</div>
 
-						<div class="col-md-4 col-tres">
-							<div class="inputs">
-								<span data-i18n="CRMLite.txtColony" class="label">Colony</span>
-								<div class="input-group">
-									<span class="input-group-addon" id="basic-addon1">
-                    <span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span>
-									</span>
-									<input data-i18n="[placeholder]CRMLite.txtColony" id="txtColony" type="text" class="form-control" name="colony" placeholder="Colony" aria-describedby="basic-addon1" data-toggle="tooltip" title="" data-original-title="Colony">
-								</div>
-							</div>
-							<div class="inputs">
-								<span data-i18n="CRMLite.txtCp" class="label">C.P</span>
-								<div class="input-group">
-									<span class="input-group-addon" id="basic-addon1">
-                    <span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span>
-									</span>
-									<input data-i18n="[placeholder]CRMLite.txtCp" id="txtCp" type="text" class="form-control" name="cp" placeholder="C.P." aria-describedby="basic-addon1" data-toggle="tooltip" title="" data-original-title="C.P.">
-								</div>
-							</div>
-							<div class="inputs">
-								<span data-i18n="CRMLite.txtCity" class="label">City</span>
-								<div class="input-group">
-									<span class="input-group-addon" id="basic-addon1">
-                    <span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span>
-									</span>
-									<input data-i18n="[placeholder]CRMLite.txtCity" id="txtCity" type="text" class="form-control" name="city" placeholder="City" aria-describedby="basic-addon1" data-toggle="tooltip" title="" data-original-title="City">
-								</div>
-							</div>
-							<div class="inputs">
-								<span data-i18n="CRMLite.txtState" class="label">State</span>
-								<div class="input-group">
-									<span class="input-group-addon" id="basic-addon1">
-                    <span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span>
-									</span>
-									<input data-i18n="[placeholder]CRMLite.txtState" id="txtState" type="text" class="form-control" name="state" placeholder="State" aria-describedby="basic-addon1" data-toggle="tooltip" title="" data-original-title="State">
-								</div>
-							</div>
-							<div class="inputs">
-								<span data-i18n="CRMLite.txtCountry" class="label">Country</span>
-								<div class="input-group">
-									<span class="input-group-addon" id="basic-addon1">
-
-					<i class="fa fa-globe"></i>
-							</span>
-									<input data-i18n="[placeholder]CRMLite.txtCountry" id="txtCountry" type="text" class="form-control" name="country" placeholder="Country" aria-describedby="basic-addon1" data-toggle="tooltip" title="" data-original-title="Country">
-								</div>
-							</div>
-
+						<div id="col-2" class="col-md-4 col-tres">
+							<!-- CAMPOS A CARGAR DESDE JS -->
 						</div>
 
-						<div class="col-md-4">
-							<div class="inputs">
-								<span class="label" id="lblField1">Field 1</span>
-								<div class="input-group">
-									<span class="input-group-addon" id="basic-addon1">
-                    <span class="glyphicon glyphicon-file" aria-hidden="true"></span>
-									</span>
-									<input id="txtField1" type="text" class="form-control" name="field1" placeholder="Field 1" aria-describedby="basic-addon1">
-								</div>
-							</div>
-							<div class="inputs">
-								<span class="label" id="lblField2">Field 2</span>
-								<div class="input-group">
-									<span class="input-group-addon" id="basic-addon1">
-                    <span class="glyphicon glyphicon-file" aria-hidden="true"></span>
-									</span>
-									<input id="txtField2" type="text" class="form-control" name="field2" placeholder="Field 2" aria-describedby="basic-addon1">
-								</div>
-							</div>
-							<div class="inputs">
-								<span class="label" id="lblField3">Field 3</span>
-								<div class="input-group">
-									<span class="input-group-addon" id="basic-addon1">
-                    <span class="glyphicon glyphicon-file" aria-hidden="true"></span>
-
-
-									</span>
-									<input id="txtField3" type="text" class="form-control" name="field3" placeholder="Field 3" aria-describedby="basic-addon1">
-								</div>
-							</div>
-							<div class="inputs">
-								<span class="label" id="lblField4">Field 4</span>
-								<select id="cmbField4" class="combobox-ui">
-						<option data-i18n="CRMLite.SelectOption" disabled="true" selected="true" value="">Select an option</option>
-					</select>
-							</div>
-							<div class="inputs">
-								<span class="label">Field 5</span>
-								<select id="cmbField5" class="combobox-ui">
-						<option data-i18n="CRMLite.SelectOption" disabled="true" selected="true" value="">Select an option</option>
-					</select>
-							</div>
-
+						<div id="col-3" class="col-md-4 col-tres">
+							<!-- CAMPOS A CARGAR DESDE JS -->
 						</div>
 					</form>
 					<div class="files-container fila">
@@ -229,8 +99,9 @@
 						</div>
 						<div id="bdgNewfile" class="badge-file badge-file-new">
 
-								<i class="fa fa-plus-circle" style="margin-right: 5px;"></i> 
-							<spam data-i18n="CRMLite.newFile">New File (link)
+							<i class="fa fa-plus-circle" style="margin-right: 5px;"></i>
+							<spam>
+								New field
 							</spam>
 						</div>
 
@@ -238,7 +109,7 @@
 				</div>
 
 			</div>
-			<div class="col-md-3 containerform">
+			<div class="col-md-3 containerform" style="display: none;">
 				<div class="dispositions-container" style="width: 100%">
 					<div class="flex-title">
 						<spam data-i18n="CRMLite.disposition"> Disposition </spam>
@@ -252,21 +123,27 @@
 						</div>
 						<div class="inputs">
 							<select id="cmbRes1" class="combobox-ui">
-						<option i18n="CRMLite.dispo1" disabled="true" selected="true" value="">Select level 1</option>
+						<option disabled="true" selected="true" value="">Select level 1</option>
 					</select>
 						</div>
 						<div class="inputs">
 							<select id="cmbRes2" class="combobox-ui">
-						<option i18n="CRMLite.dispo2" disabled="true" selected="true" value="">Select level 2</option>
+						<option disabled="true" selected="true" value="">Select level 2</option>
 					</select>
 						</div>
 						<div class="inputs">
 							<select id="cmbRes3" class="combobox-ui">
-						<option i18n="CRMLite.dispo3" disabled="true" selected="true" value="">Select level 3</option>
+						<option disabled="true" selected="true" value="">Select level 3</option>
 					</select>
 						</div>
 						<div class="inputs">
 							<textarea id="txtNote" placeholder="Notes" class="form-control"></textarea>
+						</div>
+						<div class="input-group ringbaTransfer_container inputs" style="display:none">
+							<span class="input-group-addon">
+        					<input type="checkbox" aria-label="..." id="ringbaTransfer">
+      						</span>
+							<input type="text" class="form-control" aria-label="..." disabled="" placeholder="Sent info to Ringba" title="Sent info to Ringba" style="background: white;text-align: center;">
 						</div>
 						<div class="inputs">
 							<div id="datediv">
@@ -284,7 +161,7 @@
 			</div>
 		</section>
 		<section id="cntHistory" class="fila history-container">
-			<div class="containerform tblcont">
+			<div class="containerform tblcont" style="display: none;">
 				<div class="table-container__history">
 					<table class="table" id="tblHistory">
 						<thead>
@@ -311,6 +188,8 @@
 	<!-- NO BORRAR / DO NOT DELETE -->
 	<div id="scripts"></div>
 	<script type="text/javascript">
+	document.querySelectorAll('.containerform').forEach(element => { element.style.display = "none" })
+
     if (typeof modo === 'undefined') {
         document.open();
         document.write(
