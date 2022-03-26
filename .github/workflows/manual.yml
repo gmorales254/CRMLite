@@ -20,7 +20,6 @@ jobs:
           echo ::set-output name=path::$GITHUB_WORKSPACE/CRMLite
           # Copia de archivos del repositorio a la carpeta CRMLite
           cp -a $GITHUB_WORKSPACE/CRMLite $GITHUB_WORKSPACE/CRMLiteBUILD/
-          cp -a $GITHUB_WORKSPACE/reports $GITHUB_WORKSPACE/CRMLiteBUILD/
           # Comprimimos la carpeta CRMLite en .zip
           zip -9 -r CRMLite${GITHUB_REF:10}.zip CRMLiteBUILD
           cp CRMLite${GITHUB_REF:10}.zip CRMLiteBUILD
