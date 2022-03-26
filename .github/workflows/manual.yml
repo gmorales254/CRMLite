@@ -1,4 +1,4 @@
-name: buildclever
+name: BuildCRMLite
 
 on:
   push:
