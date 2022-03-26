@@ -15,15 +15,15 @@ jobs:
       - name: Run a multi-line script
         id: build
         run: |
-          mkdir -p $GITHUB_WORKSPACE/CRMLite
+          mkdir -p $GITHUB_WORKSPACE/CRMLiteBUILD
           echo ::set-output name=version::${GITHUB_REF:10}
           echo ::set-output name=path::$GITHUB_WORKSPACE/CRMLite
           # Copia de archivos del repositorio a la carpeta CRMLite
-          cp -a $GITHUB_WORKSPACE/CRMLite $GITHUB_WORKSPACE/CRMLite/
-          cp -a $GITHUB_WORKSPACE/reports $GITHUB_WORKSPACE/CRMLite/
+          cp -a $GITHUB_WORKSPACE/CRMLite $GITHUB_WORKSPACE/CRMLiteBUILD/
+          cp -a $GITHUB_WORKSPACE/reports $GITHUB_WORKSPACE/CRMLiteBUILD/
           # Comprimimos la carpeta CRMLite en .zip
-          zip -9 -r CRMLite${GITHUB_REF:10}.zip CRMLite
-          cp CRMLite${GITHUB_REF:10}.zip CRMLite
+          zip -9 -r CRMLite${GITHUB_REF:10}.zip CRMLiteBUILD
+          cp CRMLite${GITHUB_REF:10}.zip CRMLiteBUILD
       - name: Upload binaries to release
         uses: svenstaro/upload-release-action@v1-release
         with:
