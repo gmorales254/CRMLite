@@ -23,6 +23,7 @@
 							</span>
 						</div>
 
+
 					</div>
 					<div class="table-container">
 						<table class="table" id="tblSearch">
@@ -101,13 +102,41 @@
 
 							<i class="fa fa-plus-circle" style="margin-right: 5px;"></i>
 							<spam>
-								New field
+								New file
 							</spam>
 						</div>
-
+						
 					</div>
-				</div>
-
+					<div style="display: flex;flex-direction: row;flex-wrap: wrap;justify-content: center;align-items: center;margin: 10px;">
+						<div class="inputs" style="margin: 8px;">
+							<span class="label fvalidation__inputs">Due</span>
+								<div class="input-group">
+									<span class="input-group-addon" id="basic-addon1" title="Due">            
+										<i class="fa fa-credit-card-alt"></i>
+									</span>
+									<input type="text" class="form-control" name="Due" placeholder="Due" id="lms-due" aria-describedby="basic-addon1" data-toggle="tooltip" title="Due" data-original-title="Due">
+								</div>
+						</div>
+						<div class="inputs">
+							<span class="label fvalidation__inputs">Next payment</span>
+								<div class="input-group">
+									<input id="lms-nextpayment" class="combobox-ui" type="datetime-local" placeholder="Next payment">
+								</div>
+						</div>
+    					<div style="padding-top: 10px;display: flex;align-items: center;flex-direction: row;height: 100%;">
+    						<div class="" style="">
+    							<button id="btnUpdateBlackListDate" type="button" class="btn btn-success btn-altsave" style="height: 35px;margin-left: 5px;"> 
+    					  			<i class="fa fa-save"></i>
+    				 			</button>
+    						</div>
+    						<div class="cleanbtn">
+    							<button id="btnCleanBlackListDate" type="button" class="btn btn-danger btn-clean" style="height: 35px;margin-left: 5px;"> 
+    					 			<i class="fa fa-trash"></i>
+    				 			</button>
+    						</div>
+                        </div>
+					</div>
+			</div>  
 			</div>
 			<div class="col-md-3 containerform" style="display: none;">
 				<div class="dispositions-container" style="width: 100%">

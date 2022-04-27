@@ -27,7 +27,6 @@ var hayMasTipificaciones = true;
 var globalaction = "";
 var customerFound = "";
 var callid = "";
-var inpts;
 var structure;
 var config; //all the settings from the database
 
@@ -97,6 +96,21 @@ document.getElementById("btnSave").addEventListener("click", async () => {
         return;
       }
       await makeReschedule();
+    }else if(globalaction === "BLACKLISTTEMP"){
+      if (!document.getElementById("dateframe").value) {
+        notification(
+          "Sorry",
+          "please, choose a date for schedule the blacklist number",
+          "fa fa-warning",
+          "warning"
+        );
+        return;
+      }else{
+
+        let blacklistdate = moment(document.getElementById('dateframe').value).format("YYYY-MM-DD 00:00:00")
+        await addToBlacklistSchedule(blacklistdate);
+     
+      }
     }
 
     let campana = document.getElementById("cmbCampaign").value.split(" ")[0];
@@ -208,6 +222,78 @@ document
     }
   });
 
+  document.getElementById('btnUpdateBlackListDate').addEventListener('click', async (e)=>{
+    console.info('btnUpdateBlackListDate event click');
+    e.target.disabled = true;
+    let callerid = document.querySelector(`[data-fieldid="phone"]`).value;
+    let schedule = document.getElementById('lms-nextpayment').value;
+    let due = document.getElementById('lms-due').value;
+
+    if (!callerid){
+      notification("We don't found a phone number active", `Fill the field "phone" to continue`, "fa fa-error", "warning");
+      e.target.disabled = false;
+      return;
+    }
+    if(!due){
+      notification("Fill the field 'Due' to continue","", "fa fa-warning", "warning");
+      e.target.disabled = false;
+      return;
+    }
+    if(!schedule){
+      notification("You didn't set a date for the next payment", ``, "fa fa-error", "warning");
+      e.target.disabled = false;
+      return;
+    }else{
+      schedule = moment(schedule).format("YYYY-MM-DD 00:00:00");
+    }
+    let resp, resp2; 
+    try{
+      resp = await addToBlacklistSchedule(schedule);
+      resp2 = await UC_exec_async(`UPDATE ccrepo.CRMLite_customersV2 SET promise = "${due}", schedule_promise = "${schedule}" WHERE phone = "${callerid}"`, '');
+    }catch(err){
+      resp = "ERROR";
+      resp2 = "ERROR";
+      e.target.disabled = false;
+    }
+
+
+    if(resp.toUpperCase() == "OK" && resp2.toUpperCase() == "OK"){
+      notification(`The phone number ${callerid} has been blacklisted successfully for ${schedule}`, ``, "fa fa-success", "success");
+    }else{
+      notification(`Something has been lost`, `please, try later.`, "fa fa-warning", "warning");
+    }
+
+    e.target.disabled = false;
+
+  });
+
+  document.getElementById('btnCleanBlackListDate').addEventListener('click', async (e)=>{
+    console.info('btnCleanBlackListDate event click')
+    let callerid = document.querySelector(`[data-fieldid="phone"]`).value;
+    e.target.disabled = true;
+    if (!callerid){
+      notification("We don't found a phone number active", `Fill the field "phone" to continue`, "fa fa-error", "warning");
+      e.target.disabled = false;
+      return;
+    }
+
+    let resp;
+    try{
+      resp = await UC_exec_async(`CALL ccdata.blacklist_schedule_procedure_deletefrom("${callerid}")`, '');
+    }catch(e){
+      resp = "ERROR"
+    }
+    if(resp.toUpperCase() == "OK"){
+      notification(`The number ${callerid} has been deleted from our blacklist`, ``, "fa fa-success", "success");
+      document.getElementById('lms-due').value = "";
+      document.getElementById('lms-nextpayment').value = "";
+    }else{
+      notification("Something went wrong with the data or database", `please, try later.`, "fa fa-error", "warning");
+    }
+
+    e.target.disabled = false;
+  })
+
 
 async function ringbaTransfer() {
   let callerid = document.querySelector(`[data-fieldid="phone"]`).value;
@@ -243,7 +329,7 @@ async function ringbaTransfer() {
   });
 
   if(resp.code === 200) notification("The info has been transfered to Ringba", `id: ${config.RingbaTransfer.val}`, "fa fa-success", "success");
-  else notification("Error transfering the data to Ringba", `env id: ${config.RingbaTransfer.val}`, "fa fa-error", "error");
+  else notification("Error transfering the data to Ringba", `env id: ${config.RingbaTransfer.val}`, "fa fa-error", "warning");
 
 }
 
@@ -333,25 +419,16 @@ async function addToBlacklist() {
   objeto.username = parent.userid;
   objeto.lastchaged = moment().format("YYYY-MM-DD HH:mm:ss");
 
-  let querypart = `WHERE destination like '%${
-    document.querySelector(`[data-fieldid="phone"]`).value
-    }%' OR (alternatives <> '' 
-    AND (alternatives like '%${
-    document.querySelector(`[data-fieldid="phone"]`).value
-    }%' OR alternatives like '%${
-    document.querySelector(`[data-fieldid="phone"]`).value
-    }%'))`;
-  let queryC = `DELETE FROM ccdata.calls_spool ${querypart}`;
-  let queryS = `DELETE FROM ccdata.calls_scheduler ${querypart}`;
-  await UC_exec_async(queryC, "");
-  await UC_exec_async(queryS, "");
-  UC_Save(objeto, "ccdata.black_list", "", () =>
-    audit(
-      `The user ${parent.userid} insert ${
-      document.querySelector(`[data-fieldid="phone"]`).value
-      } to BlackList`
-    )
-  );
+  await UC_exec_async(`CALL ccdata.blacklist_schedule_procedure(${objeto.phone}, '*', ${objeto.username}, '')`, '');
+  UC_audit(`BLACKLIST CRMLITE: The user ${parent.userid} insert ${document.querySelector(`[data-fieldid="phone"]`).value} to BlackList`);
+}
+
+async function addToBlacklistSchedule(schedule) {
+  schedule = !schedule ? moment().add('days', 1).format("YYYY-MM-DD 00:00:00") : schedule; //control preventivo de si viene o no la variable Schedule llena.
+  let phone = document.querySelector(`[data-fieldid="phone"]`).value;
+  let resp = await UC_exec_async(`CALL ccdata.blacklist_schedule_procedure("${phone}", '*', "${parent.userid}", "${schedule}")`, '');
+  if(resp.toUpperCase() === "OK") UC_audit(`TEMPORAL BLACKLIST CRMLITE: The user ${parent.userid} insert ${phone} to temporal BlackList schedule for ${schedule}`);
+  return resp;
 }
 
 //Limpiar todos los fields del react form o eliminar el usuario en caso de encontrarlo>
@@ -803,33 +880,26 @@ async function consultarAccion() {
   let res1 = document.getElementById("cmbRes1").value;
   let res2 = document.getElementById("cmbRes2").value;
   let res3 = document.getElementById("cmbRes3").value;
+
   let respi = await UC_get_async(
     `SELECT action from ccdata.dispositions where value1 = '${res1}' and value2 = '${res2}' and value3 = '${res3}' and campaign = '${campana}' and channel = '${canal}'`,
     ""
   );
   let accion = JSON.parse(respi);
+  let arrRespool = ['RESPOOL'];
+  let arrReschedule = ['REAGENDA', 'RESCHEDULE'];
+  let arrBlacklist = ['BLACKLIST', 'LISTA NEGRA', 'DO NOT CALL', 'NO LLAMAR MAS', 'DNC'];
+  let arrBlacklistTemp = ['BLACKLIST TEMP', 'DNC TEMP', 'LISTA NEGRA TEMPORAL'];
 
-  if (
-    res1.toUpperCase() === "RESCHEDULE" ||
-    res1.toUpperCase() === "REAGENDA" ||
-    res1.toUpperCase() === "RESPOOL"
-  )
-    globalaction = "RESCHEDULE";
-  if (
-    res1.toUpperCase() === "BLACKLIST" ||
-    res1.toUpperCase() === "LISTA NEGRA" ||
-    res1.toUpperCase() === "DO NOT CALL" ||
-    res1.toUpperCase() === "NO LLAMAR MAS"
-  )
-    globalaction = "BLACKLIST";
-  if (accion.length && accion[0].action != "NOACTION")
-    globalaction = accion[0].action.toUpperCase();
+  if (accion.length && accion[0].action != "NOACTION") globalaction = accion[0].action.toUpperCase();
+  if (arrReschedule.includes(res1.toUpperCase())) globalaction = "RESCHEDULE";
+  if (arrRespool.includes(res1.toUpperCase())) globalaction = "RESPOOL";
+  if (arrBlacklist.includes(res1.toUpperCase())) globalaction = "BLACKLIST";
+  if (arrBlacklistTemp.includes(res1.toUpperCase())) globalaction = "BLACKLISTTEMP";
 
-  if (globalaction == "RESCHEDULE") {
-    document.getElementById("datediv").style.display = "block";
-  } else {
-    document.getElementById("datediv").style.display = "none";
-  }
+  if (globalaction == "RESCHEDULE") document.getElementById("datediv").style.display = "block";
+  else document.getElementById("datediv").style.display = "none";
+  
 }
 
 ///
@@ -853,6 +923,8 @@ async function loadCustomer(searchBy, callid, justAsking = false) {
 
     //vacio el array  para dejarle paso a los archivos del nuevo customer
     let respInsert = fvalidation.insertFieldsInformation(objInfo, structure, arrCustomer[0].phone, arrCustomer[0].email, arrCustomer[0].name);
+    document.getElementById('lms-due').value = arrCustomer[0].promise ? arrCustomer[0].promise : "";
+    document.getElementById('lms-nextpayment').value = arrCustomer[0].schedule_promise ?  moment(arrCustomer[0].schedule_promise).format("YYYY-MM-DDThh:mm") : "";
 
     customerFound = Number(arrCustomer[0].id);
     notification(

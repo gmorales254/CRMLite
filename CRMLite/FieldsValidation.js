@@ -175,6 +175,7 @@ export function insertFieldsInformation(objInformation = {}, structure = [{}], p
       objInformation.phone = phone;
       objInformation.email = email;
       objInformation.name = name;
+      
 
   if (!objInformation || !structure.length) return { error: "Dont found information for insert" };
 
@@ -192,7 +193,9 @@ export function insertFieldsInformation(objInformation = {}, structure = [{}], p
     }
   });
 
+
   return true;
+
 }
 
 
