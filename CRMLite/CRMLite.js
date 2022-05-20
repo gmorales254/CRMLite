@@ -539,6 +539,7 @@ async function init() {
 
   config = await getConfig();
   if (config.RingbaTransfer.active) document.querySelector('.ringbaTransfer_container').style.display = "";
+  if (config.lmsFields.active) document.getElementById("lmsdiv").style.display = "flex"; //mostrar el div de LMS
   if(CTI){
 
     let CTIParsee = JSON.parse(CTI);
@@ -664,8 +665,26 @@ async function init() {
     GUID = CTIParse.Guid;
     console.log(`${CTIParse.Campaign} (telephony)`);
 
-    if (config.blindTransfer.active) document.querySelector('.transferInput_container').style.dispaly = ""; // si tenemos el blindTransfer activo, lo habilitamos.
+    if (config.blindTransfer.active){
+      document.querySelector('.transferInput_container').style.display = ""; // si tenemos el blindTransfer activo, lo habilitamos.
+      
+//TRANSFER:
 
+document.getElementById('attendTransferAddon').addEventListener('click', async () => {
+  let numeroLlamada = document.querySelector(`[data-fieldid="phone"]`).value;
+  let agentto = document.getElementById('txtExten').value;
+  if (!!agentto && !!numeroLlamada) {
+    let resp = await UC_exec_async(`INSERT INTO ccrepo.CRM_temp (agentFrom, agentto, callerId) 
+		VALUES ('${parent.agent.name}', '${agentto}', '${numeroLlamada}')`, '');
+
+    if (resp == "OK") {
+      parent.__SendDTMF(`#0${agentto}`);
+    }
+
+  }
+
+})
+    }
     document.getElementById(
       "cmbCampaign"
     ).value = `${CTIParse.Campaign} (telephony)`;

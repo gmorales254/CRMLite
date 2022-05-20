@@ -24,7 +24,6 @@ export async function getFieldsInformationByParam(searchBy = "phone", val = "") 
       `SELECT * FROM CRMLite_customersV2 
     WHERE ${searchBy} = "${val}"`,
       'Repo');
-
   } else {
     fieldsInfo = await UC_get_async(
       `SELECT * FROM CRMLite_customersV2 
@@ -206,7 +205,7 @@ export function manualFormValidation(arrElements = []) {
     email: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/, // correo
     phone: /^\d{7,13}$/, // 7 a 13 numeros
     num: /^[0-9]+$/,
-    alphanumeric: /^[A-Za-z0-9\s!/.,^()';&%$#-_=:@]+$/, //alfanumerico
+    alphanumeric: /^[a-zA-ZÀ-ÿ0-9\s!/.,^()';&%$#-_=:@]+$/, //alfanumerico
     date: new RegExp(`^[0-9]{1,4}-[0-9]{1,2}-[0-9]{1,2}T[0-9]{1,2}:[0-9]{1,2}$`)
   };
   //EJ.: arrElements = [{}]
